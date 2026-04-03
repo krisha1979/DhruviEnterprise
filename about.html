@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Story – Dhruvi Enterprise</title>
+    <meta name="description"
+        content="The story behind Dhruvi Enterprise — premium customized T-shirts crafted with intention since 2020." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* ═══════════════════ TOKENS ═══════════════════ */
+        :root {
+            --ivory: #F5F0E1;
+            --brown: #C4A484;
+            --dark: #1A1714;
+            --muted: #5a5250;
+            --white: #ffffff;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* ═══════════════════ NAV (EXACT FROM INDEX) ═══════════════════ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 44px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .nav-left {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-left a {
+            font-size: 11.5px;
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            color: #5a5250;
+            transition: color .2s;
+        }
+
+        .nav-left a:hover,
+        .nav-left a.active {
+            color: #1a1a1a;
+        }
+
+        .nav-brand {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: .3em;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .nav-right button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #5a5250;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            transition: color .2s;
+        }
+
+        .nav-right button:hover {
+            color: #1a1a1a;
+        }
+
+        .nav-right svg {
+            width: 17px;
+            height: 17px;
+            stroke-width: 1.5;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 36px;
+            height: 36px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 200;
+        }
+
+        .hamburger .bar {
+            width: 22px;
+            height: 1.5px;
+            background: #1a1714;
+            border-radius: 2px;
+            transition: all .3s ease;
+            transform-origin: center;
+        }
+
+        .hamburger.open .bar:nth-child(1) {
+            transform: translateY(6.5px) rotate(45deg);
+        }
+
+        .hamburger.open .bar:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .hamburger.open .bar:nth-child(3) {
+            transform: translateY(-6.5px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 54px;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, .98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #ece9e5;
+            z-index: 99;
+            flex-direction: column;
+            transform: translateY(-10px);
+            opacity: 0;
+            transition: all .3s cubic-bezier(.4, 0, .2, 1);
+            pointer-events: none;
+        }
+
+        .mobile-menu.open {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 18px 28px;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #5a5250;
+            border-bottom: 1px solid #f0ece8;
+            transition: all .2s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: #7a5545;
+            background: #fdf9f7;
+            padding-left: 36px;
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        /* ═══════════════════ S1: WAVY HERO ═══════════════════ */
+        .hero-wrap {
+            position: relative;
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-top: 54px;
+            overflow: hidden;
+        }
+
+        /* ── Hero Slideshow ── */
+        .hero-img-side {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.06);
+            animation: kenBurns 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes kenBurns {
+            from {
+                transform: scale(1.06);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .hero-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .h-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .4);
+            cursor: pointer;
+            transition: .3s;
+            border: 1px solid rgba(255, 255, 255, .6);
+        }
+
+        .h-dot.active {
+            background: var(--brown);
+            border-color: var(--brown);
+            width: 20px;
+            border-radius: 3px;
+        }
+
+        .hero-text-side {
+            background: var(--ivory);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 9%;
+        }
+
+        .hero-eyebrow {
+            font-size: 10px;
+            letter-spacing: .5em;
+            text-transform: uppercase;
+            color: var(--brown);
+            margin-bottom: 28px;
+        }
+
+        .hero-text-side h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 28px;
+        }
+
+        .hero-text-side p {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.9;
+            margin-bottom: 44px;
+            max-width: 420px;
+        }
+
+        .btn-minimal {
+            display: inline-block;
+            padding: 15px 32px;
+            border: 1px solid var(--dark);
+            font-size: 11px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--dark);
+            transition: .3s var(--ease);
+        }
+
+        .btn-minimal:hover {
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        /* Wavy ribbon */
+        .ribbon-wrap {
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 220px;
+            z-index: 50;
+            pointer-events: none;
+        }
+
+        .ribbon-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .r-path {
+            fill: var(--brown);
+        }
+
+        .r-text {
+            font-size: 17px;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif;
+            fill: rgba(255, 255, 255, .88);
+        }
+
+
+
+
+        /* ═══ S2: ABOUT DHRUVI ═══ */
+        .about-dhruvi {
+            padding: 140px 44px;
+            background: #f7f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ad-container {
+            max-width: 720px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .ad-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(40px, 6vw, 68px);
+            line-height: 1.1;
+            font-weight: 300;
+            color: var(--dark);
+            margin-bottom: 40px;
+        }
+
+        .ad-desc {
+            font-size: 14px;
+            line-height: 1.9;
+            color: var(--muted);
+            margin-bottom: 70px;
+        }
+
+        .ad-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-top: 1px solid rgba(26, 23, 20, 0.15);
+            border-bottom: 1px solid rgba(26, 23, 20, 0.15);
+            padding: 30px 0;
+        }
+
+        .adf-col {
+            font-size: 11.5px;
+            letter-spacing: 0.18em;
+            line-height: 1.6;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: var(--dark);
+        }
+
+
+        /* ═══ S4: DARK BENTO HOVER GRID ═══ */
+        .bento-section {
+            background: var(--dark);
+            padding: 100px 44px;
+        }
+
+        .bento-label {
+            font-size: 10px;
+            letter-spacing: .5em;
+            text-transform: uppercase;
+            color: var(--brown);
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            grid-template-rows: 280px 280px;
+            gap: 16px;
+        }
+
+        .bento-cell {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .bento-cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .7s var(--ease), filter .5s;
+            filter: brightness(.65);
+        }
+
+        .bento-cell:hover img {
+            transform: scale(1.07);
+            filter: brightness(.45);
+        }
+
+        .bento-cell-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 32px 28px;
+        }
+
+        .bc-tag {
+            font-size: 9px;
+            letter-spacing: .4em;
+            text-transform: uppercase;
+            color: var(--brown);
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: .4s var(--ease);
+        }
+
+        .bento-cell:hover .bc-tag {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bc-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(22px, 2.5vw, 34px);
+            color: var(--white);
+            line-height: 1.15;
+        }
+
+        .bc-desc {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .55);
+            margin-top: 10px;
+            line-height: 1.7;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .5s var(--ease);
+        }
+
+        .bento-cell:hover .bc-desc {
+            max-height: 80px;
+        }
+
+        .b-wide {
+            grid-row: span 2;
+        }
+
+        .b-tall {
+            grid-row: span 2;
+        }
+
+        /* ═══ S5: FULL-BLEED QUOTE W/ CHIPS ═══ */
+        .quote-band {
+            position: relative;
+            height: 90vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qb-bg {
+            position: absolute;
+            inset: 0;
+        }
+
+        .qb-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .qb-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(26, 23, 20, .75);
+        }
+
+        .qb-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 6vw;
+        }
+
+        .qb-content blockquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(36px, 5.5vw, 80px);
+            font-weight: 300;
+            color: var(--white);
+            line-height: 1.1;
+            font-style: italic;
+            margin-bottom: 50px;
+        }
+
+        .qb-content blockquote em {
+            color: var(--brown);
+            font-style: normal;
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .chip {
+            padding: 10px 22px;
+            border: 1px solid rgba(196, 164, 132, .45);
+            font-size: 10px;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .7);
+            transition: .3s;
+        }
+
+        .chip:hover {
+            border-color: var(--brown);
+            color: var(--brown);
+        }
+
+        /* ═══ S6: IVORY MILESTONE TIMELINE ═══ */
+        .timeline-section {
+            padding: 140px 5vw;
+            background: var(--white);
+        }
+
+        .tl-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 100px;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .tl-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(36px, 5vw, 68px);
+            line-height: 1.05;
+        }
+
+        .tl-header p {
+            font-size: 13px;
+            color: var(--muted);
+            max-width: 360px;
+            line-height: 1.8;
+        }
+
+        .tl-track {
+            position: relative;
+        }
+
+        .tl-line {
+            position: absolute;
+            top: 22px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #ede8e0;
+        }
+
+        .tl-progress {
+            position: absolute;
+            top: 22px;
+            left: 0;
+            height: 1px;
+            background: var(--brown);
+            width: 0%;
+            transition: width 1.4s var(--ease);
+        }
+
+        .tl-nodes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            position: relative;
+            padding-top: 0;
+        }
+
+        .tl-node {
+            padding-top: 60px;
+            padding-right: 40px;
+            opacity: 0;
+            transform: translateY(24px);
+        }
+
+        .tl-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--brown);
+            position: absolute;
+            top: 17px;
+        }
+
+        .tl-year {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 300;
+            color: var(--dark);
+            margin-bottom: 12px;
+            margin-top: 30px;
+        }
+
+        .tl-node h4 {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: .04em;
+        }
+
+        .tl-node p {
+            font-size: 12.5px;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        /* ═══════════════════ S7: INTERACTIVE CLOSER ═══════════════════ */
+        .closer-wrap {
+            position: relative;
+            height: 60vh;
+            background: var(--ivory);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: none;
+        }
+
+        .closer-bg-text {
+            position: absolute;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22vw;
+            font-weight: 700;
+            color: rgba(196, 164, 132, .07);
+            white-space: nowrap;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .closer-quote {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 40px;
+        }
+
+        .closer-quote h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(32px, 4.5vw, 64px);
+            line-height: 1.2;
+            font-style: italic;
+            margin-bottom: 40px;
+        }
+
+        .closer-quote h2 span {
+            color: var(--brown);
+        }
+
+        .closer-quote a {
+            display: inline-block;
+            padding: 16px 40px;
+            border: 1px solid var(--dark);
+            font-size: 11px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--dark);
+            transition: .3s var(--ease);
+        }
+
+        .closer-quote a:hover {
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        .cursor-glow {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(196, 164, 132, .12) 0%, transparent 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            transition: opacity .3s;
+            opacity: 0;
+        }
+
+        /* ═══════════════════ FOOTER (EXACT FROM INDEX) ═══════════════════ */
+        .site-footer {
+            background: #fdfbf9;
+            padding: 80px 44px 0;
+            border-top: 1px solid #ece9e5;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr 1fr 1.4fr;
+            gap: 48px;
+            padding-bottom: 64px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 500;
+            line-height: 1.15;
+            margin-bottom: 18px;
+            color: #1a1714;
+        }
+
+        .footer-brand p {
+            font-size: 12px;
+            line-height: 1.85;
+            color: #7a7268;
+            max-width: 280px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .footer-social-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #e0dbd5;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #7a7268;
+            transition: .2s;
+        }
+
+        .footer-social-btn:hover {
+            border-color: #7a5545;
+            color: #7a5545;
+        }
+
+        .footer-col h4 {
+            font-size: 10px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: #1a1714;
+            margin-bottom: 22px;
+            font-weight: 600;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            font-size: 12.5px;
+            color: #7a7268;
+            transition: color .2s;
+        }
+
+        .footer-col ul li a:hover {
+            color: #1a1714;
+        }
+
+        .footer-newsletter h4 {
+            font-size: 10px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: #1a1714;
+            margin-bottom: 14px;
+            font-weight: 600;
+        }
+
+        .footer-newsletter p {
+            font-size: 12px;
+            color: #7a7268;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            border: 1px solid #e0dbd5;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 11px 14px;
+            border: none;
+            background: none;
+            font-size: 12px;
+            color: #1a1714;
+            outline: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .newsletter-form button {
+            padding: 11px 18px;
+            background: #1a1714;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 10px;
+            letter-spacing: .1em;
+            font-family: 'Montserrat', sans-serif;
+            transition: background .2s;
+        }
+
+        .newsletter-form button:hover {
+            background: #7a5545;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #ece9e5;
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10.5px;
+            color: #9a928e;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-bottom a {
+            color: #9a928e;
+            transition: color .2s;
+        }
+
+        .footer-bottom a:hover {
+            color: #1a1714;
+        }
+
+        .footer-brand-accent a {
+            color: #7a5545;
+        }
+
+        /* ═══════════════════ REVEAL UTILITY ═══════════════════ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(48px);
+        }
+
+        /* ═══════════════════ RESPONSIVE ═══════════════════ */
+        @media(max-width:1024px) {
+            nav {
+                padding: 0 20px;
+            }
+
+            .nav-left {
+                display: none;
+            }
+
+            .nav-brand {
+                position: static;
+                transform: none;
+                font-size: 16px;
+                margin-right: auto;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-wrap {
+                display: flex;
+                flex-direction: column;
+                min-height: calc(100vh - 54px);
+            }
+
+            .hero-img-side {
+                flex: 1;
+                min-height: 50vh;
+                height: auto;
+            }
+
+            .hero-text-side {
+                padding: 50px 28px;
+                height: auto;
+            }
+
+            .ribbon-wrap {
+                display: none;
+            }
+
+            .zig-row,
+            .zig-row.flip {
+                grid-template-columns: 1fr;
+                direction: ltr;
+            }
+
+            .zig-img {
+                height: 60vw;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+            }
+
+            .b-wide,
+            .b-tall {
+                grid-row: span 1;
+            }
+
+            .bento-cell {
+                height: 240px;
+            }
+
+            .tl-nodes {
+                grid-template-columns: 1fr;
+                row-gap: 30px;
+                padding-left: 24px;
+            }
+
+            .tl-nodes::before {
+                content: '';
+                position: absolute;
+                left: 4px;
+                top: 0;
+                bottom: 0;
+                width: 1px;
+                background: #ede8e0;
+            }
+
+            .tl-node {
+                padding-top: 0;
+                padding-right: 0;
+                padding-bottom: 20px;
+            }
+
+            .tl-dot {
+                display: block !important;
+                position: absolute;
+                left: -24px;
+                top: 6px;
+            }
+
+            .tl-year {
+                margin-top: 0;
+            }
+
+            .tl-line,
+            .tl-progress {
+                display: none;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+                gap: 36px;
+            }
+
+            .mw-num-row {
+                gap: 30px;
+            }
+        }
+
+        @media(max-width:600px) {
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .tl-nodes {
+                grid-template-columns: 1fr;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ad-features {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                padding: 40px 0;
+            }
+
+            .mw-num-row {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    @media (min-width: 769px) { .hamburger, .mobile-nav, .mobile-menu { display: none !important; } } </style>
+</head>
+
+<body>
+
+    <!-- ───────────── NAV ───────────── -->
+    <nav id="main-nav">
+        <ul class="nav-left">
+            <li><a href="index.html" id="nav-home">Home</a></li>
+            <li><a href="about.html" id="nav-about" class="active">About</a></li>
+            <li><a href="products.html" id="nav-products">Products</a></li>
+            <li><a href="contact.html" id="nav-contact">Contact</a></li>
+        </ul>
+        <div class="nav-brand">DHRUVI ENTERPRISE</div>
+        <div class="nav-right">
+            <button id="btn-search" aria-label="Search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="11" cy="11" r="7.5" />
+                    <line x1="16.5" y1="16.5" x2="22" y2="22" />
+                </svg>
+            </button>
+            <button id="btn-cart" aria-label="Cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <path d="M16 10a4 4 0 01-8 0" />
+                </svg>
+            </button>
+            <button class="hamburger" id="btn-hamburger" aria-label="Menu" aria-expanded="false">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- ───────────── S1: WAVY HERO ───────────── -->
+    <section class="hero-wrap">
+        <div class="hero-img-side">
+            <div class="hero-slide active"><img
+                    src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1600"
+                    alt="Premium Collection"></div>
+            <div class="hero-slide"><img src="https://images.unsplash.com/photo-1523381235312-3a1647fa9917?q=80&w=1600"
+                    alt="Craft"></div>
+            <div class="hero-slide"><img src="https://images.unsplash.com/photo-1520975954732-35dd22299614?q=80&w=1600"
+                    alt="Style"></div>
+            <div class="hero-slide"><img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=1600"
+                    alt="Print"></div>
+            <div class="hero-slide"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1600"
+                    alt="Wardrobe"></div>
+            <div class="hero-dots">
+                <span class="h-dot active" data-slide="0"></span>
+                <span class="h-dot" data-slide="1"></span>
+                <span class="h-dot" data-slide="2"></span>
+                <span class="h-dot" data-slide="3"></span>
+                <span class="h-dot" data-slide="4"></span>
+            </div>
+        </div>
+        <div class="hero-text-side">
+            <div class="hero-eyebrow">The Dhruvi Story</div>
+            <h1>Crafted by Passion<br>Inspired by You</h1>
+            <p>Explore our limited collection of bespoke essentials — where organic textures and natural silhouettes
+                celebrate
+                the modern individual.</p>
+            <a href="products.html" class="btn-minimal">SHOP THE BESTSELLERS</a>
+        </div>
+        <div class="ribbon-wrap">
+            <svg class="ribbon-svg" viewBox="0 0 1440 220" preserveAspectRatio="none">
+                <path class="r-path" id="wavyPath"
+                    d="M0,130 C280,220 540,10 820,110 C1100,210 1280,30 1440,130 L1440,220 L0,220 Z" />
+                <text class="r-text">
+                    <textPath href="#wavyPath" id="marqueeText" startOffset="0%">
+                        20% OFF SITEWIDE &nbsp;•&nbsp; DHRUVI ENTERPRISE &nbsp;•&nbsp; ESTABLISHED 2020 &nbsp;•&nbsp;
+                        PREMIUM
+                        QUALITY &nbsp;•&nbsp; BESPOKE DESIGN &nbsp;•&nbsp; 20% OFF SITEWIDE &nbsp;•&nbsp; DHRUVI
+                        ENTERPRISE
+                        &nbsp;•&nbsp; ESTABLISHED 2020 &nbsp;•&nbsp;
+                    </textPath>
+                </text>
+            </svg>
+        </div>
+    </section>
+
+
+
+
+    <!-- ───────────── S2: ABOUT DHRUVI ───────────── -->
+    <section class="about-dhruvi">
+        <div class="ad-container reveal">
+            <h2 class="ad-title">ABOUT<br>DHRUVI</h2>
+            <p class="ad-desc">
+                We are a passionate lifestyle and apparel brand with over 4 years of experience in the customized
+                fashion
+                industry. We are skilled in driving authentic expression and brand growth through high-quality clothing.
+                We
+                specialize in oversized silhouettes, premium cotton sourcing, and signature bespoke name prints.
+            </p>
+            <div class="ad-features reveal">
+                <div class="adf-col">PREMIUM<br>QUALITY</div>
+                <div class="adf-col">CUSTOM<br>DESIGNS</div>
+                <div class="adf-col">NATIONWIDE<br>SHIPPING</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ───────────── S4: DARK BENTO HOVER GRID ───────────── -->
+    <section class="bento-section">
+        <div class="bento-label">What We Stand For</div>
+        <div class="bento-grid">
+            <div class="bento-cell b-wide reveal">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200" alt="Quality">
+                <div class="bento-cell-content">
+                    <span class="bc-tag">Our Foundation</span>
+                    <h3 class="bc-title">Supreme<br>Quality, Always</h3>
+                    <p class="bc-desc">From fiber selection to final stitch inspection, we maintain zero-compromise
+                        standards at
+                        every stage of creation.</p>
+                </div>
+            </div>
+            <div class="bento-cell reveal">
+                <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=800" alt="Sustainability">
+                <div class="bento-cell-content">
+                    <span class="bc-tag">Our Ethic</span>
+                    <h3 class="bc-title">Slow Fashion<br>Fast Delivery</h3>
+                    <p class="bc-desc">We produce intentionally, not industrially — prioritizing quality over quantity
+                        in every
+                        run.</p>
+                </div>
+            </div>
+            <div class="bento-cell b-tall reveal">
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800" alt="Custom">
+                <div class="bento-cell-content">
+                    <span class="bc-tag">Our Craft</span>
+                    <h3 class="bc-title">Precision<br>in Every Detail</h3>
+                    <p class="bc-desc">Double-stitched seams, reinforced collars, and hand-finished hems. The details
+                        others skip
+                        are our obsession.</p>
+                </div>
+            </div>
+            <div class="bento-cell reveal">
+                <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?q=80&w=800" alt="Personal">
+                <div class="bento-cell-content">
+                    <span class="bc-tag">Our Promise</span>
+                    <h3 class="bc-title">Made for<br>You, Truly</h3>
+                    <p class="bc-desc">Every piece is a collaboration between our craft and your identity — uniquely
+                        yours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ───────────── S5: FULL-BLEED QUOTE + CHIPS ───────────── -->
+    <section class="quote-band">
+        <div class="qb-bg"><img src="https://images.unsplash.com/photo-1534126416832-a88fdf2911c2?q=80&w=2000"
+                alt="Brand">
+        </div>
+        <div class="qb-overlay"></div>
+        <div class="qb-content">
+            <blockquote class="reveal">"Fashion fades.<br><em>Identity</em> is eternal."</blockquote>
+            <div class="chip-row reveal">
+                <span class="chip">Premium Cotton</span>
+                <span class="chip">Custom Prints</span>
+                <span class="chip">Oversized Fit</span>
+                <span class="chip">Zero Compromise</span>
+                <span class="chip">Est. 2020</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ───────────── S6: MILESTONE TIMELINE ───────────── -->
+    <section class="timeline-section">
+        <div class="tl-header reveal">
+            <h2>Our Journey<br>Through Time</h2>
+            <p>Four years of relentless craft, customer love, and the pursuit of the perfect garment — chapter by
+                chapter.</p>
+        </div>
+        <div class="tl-track">
+            <div class="tl-line"></div>
+            <div class="tl-progress" id="tl-bar"></div>
+            <div class="tl-nodes">
+                <div class="tl-node" id="tl-n1">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">2020</div>
+                    <h4>The Founding</h4>
+                    <p>Started with a single roll of premium cotton and a radical belief that the humble T-shirt
+                        deserved more.
+                    </p>
+                </div>
+                <div class="tl-node" id="tl-n2">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">2021</div>
+                    <h4>First 100 Customers</h4>
+                    <p>Word spread organically. Our first 100 customers became brand advocates — many still order today.
+                    </p>
+                </div>
+                <div class="tl-node" id="tl-n3">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">2022</div>
+                    <h4>Custom Name Prints</h4>
+                    <p>Launched our signature name print service. Over 500 custom pieces crafted in the first season
+                        alone.</p>
+                </div>
+                <div class="tl-node" id="tl-n4">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">2024</div>
+                    <h4>10,000+ Happy Customers</h4>
+                    <p>From local roots to a thriving community of style-conscious individuals across India.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ───────────── S7: INTERACTIVE CLOSER ───────────── -->
+    <section class="closer-wrap" id="closer">
+        <div class="closer-bg-text">DHRUVI</div>
+        <div class="closer-quote reveal">
+            <h2>"Luxury is not in the logo,<br>but in the <span>silence</span> between the stitches."</h2>
+            <a href="products.html">EXPLORE THE COLLECTION</a>
+        </div>
+    </section>
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- ───────────── FOOTER (EXACT FROM INDEX) ───────────── -->
+    <footer class="site-footer" id="contact">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <h3>Dhruvi<br>Enterprise</h3>
+                <p>Premium fashion for the modern individual. Crafted with intention, worn with confidence. Redefining
+                    the
+                    everyday t-shirt since 2020.</p>
+                <div class="footer-socials">
+                    <a href="https://instagram.com/dhruvi_enterprise" class="footer-social-btn" aria-label="Instagram" target="_blank">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <circle cx="12" cy="12" r="4" />
+                            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                        </svg>
+                    </a>
+                    <a href="https://wa.me/1234567890" class="footer-social-btn" aria-label="WhatsApp" target="_blank">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                        </svg>
+                    </a>
+                    <a href="contact.html" class="footer-social-btn" aria-label="Email">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6">
+                            <rect x="2" y="4" width="20" height="16" rx="2" />
+                            <polyline points="2,4 12,13 22,4" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="products.html">New Arrivals</a></li>
+                    <li><a href="products.html">Men's Collection</a></li>
+                    <li><a href="products.html">Women's Collection</a></li>
+                    <li><a href="products.html">Custom Name Prints</a></li>
+                    <li><a href="products.html">Oversized Tees</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Stay in the loop</h4>
+                <p>Early access to new drops, exclusive offers, and style inspiration — right to your inbox.</p>
+                <form class="newsletter-form" onsubmit="return false;">
+                    <input type="email" placeholder="Your email address" />
+                    <button type="submit">Join</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>©️ 2024 Dhruvi Enterprise. All rights reserved.</span>
+            <span class="footer-brand-accent">Powered by <a href="https://technovasolutions.in/" target="_blank"
+                    rel="noopener">TechNova Solutions</a></span>
+            <div style="display:flex;gap:20px;">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Shipping</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ── Wavy Marquee ──
+        gsap.to("#marqueeText", { attr: { startOffset: "-100%" }, duration: 28, repeat: -1, ease: "none" });
+
+        // ── Hero image parallax ──
+        gsap.to("#hero-img", {
+            yPercent: 12, ease: "none",
+            scrollTrigger: { trigger: ".hero-wrap", start: "top top", end: "bottom top", scrub: true }
+        });
+
+        // ── Reveal on scroll (all .reveal) ──
+        gsap.utils.toArray(".reveal").forEach(el => {
+            gsap.to(el, {
+                opacity: 1, y: 0, duration: 1.1, ease: "power3.out",
+                scrollTrigger: { trigger: el, start: "top 85%" }
+            });
+        });
+
+        // ── Hero Slideshow Logic ──
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.h-dot');
+        let currentSlide = 0;
+        let slideInterval;
+
+        if (slides.length > 0) {
+            const showSlide = (index) => {
+                slides.forEach((s, i) => s.classList.toggle('active', i === index));
+                dots.forEach((d, i) => d.classList.toggle('active', i === index));
+                currentSlide = index;
+            };
+
+            const nextSlide = () => showSlide((currentSlide + 1) % slides.length);
+
+            slideInterval = setInterval(nextSlide, 5000);
+
+            dots.forEach((dot, idx) => {
+                dot.addEventListener('click', () => {
+                    clearInterval(slideInterval);
+                    showSlide(idx);
+                    slideInterval = setInterval(nextSlide, 5000);
+                });
+            });
+        }
+
+
+
+        // ── S4: Bento cells stagger ──
+        gsap.utils.toArray(".bento-cell").forEach((cell, i) => {
+            gsap.from(cell, {
+                opacity: 0, scale: 0.96, duration: 0.9, ease: "power3.out",
+                delay: i * 0.08,
+                scrollTrigger: { trigger: ".bento-grid", start: "top 80%" }
+            });
+        });
+
+        // ── S5: Quote band parallax (Only desktop to prevent mobile grey space) ──
+        ScrollTrigger.matchMedia({
+            "(min-width: 1025px)": function () {
+                gsap.to(".qb-bg img", {
+                    yPercent: 18, ease: "none",
+                    scrollTrigger: { trigger: ".quote-band", start: "top bottom", end: "bottom top", scrub: true }
+                });
+            }
+        });
+
+        // ── S6: Timeline progress bar + node reveals ──
+        ScrollTrigger.create({
+            trigger: ".tl-track",
+            start: "top 70%",
+            once: true,
+            onEnter: () => {
+                gsap.to("#tl-bar", { width: "100%", duration: 1.6, ease: "power2.out" });
+                gsap.utils.toArray(".tl-node").forEach((node, i) => {
+                    gsap.to(node, {
+                        opacity: 1, y: 0, duration: 0.9, ease: "power3.out",
+                        delay: 0.2 + i * 0.25
+                    });
+                });
+            }
+        });
+
+        // ── Cursor glow on closer ──
+        const glow = document.getElementById("cursor-glow");
+        const closer = document.getElementById("closer");
+        closer.addEventListener("mouseenter", () => glow.style.opacity = "1");
+        closer.addEventListener("mouseleave", () => glow.style.opacity = "0");
+        document.addEventListener("mousemove", e => {
+            glow.style.left = e.clientX + "px";
+            glow.style.top = e.clientY + "px";
+        });
+
+        // ── Hamburger Menu ──
+        const hamburger = document.getElementById("btn-hamburger");
+        const mobileMenu = document.getElementById("mobile-menu");
+        function openMenu() { hamburger.classList.add("open"); hamburger.setAttribute("aria-expanded", "true"); mobileMenu.style.display = "flex"; requestAnimationFrame(() => mobileMenu.classList.add("open")); }
+        function closeMenu() { hamburger.classList.remove("open"); hamburger.setAttribute("aria-expanded", "false"); mobileMenu.classList.remove("open"); setTimeout(() => { mobileMenu.style.display = "none"; }, 300); }
+        hamburger.addEventListener("click", e => { e.stopPropagation(); hamburger.classList.contains("open") ? closeMenu() : openMenu(); });
+        mobileMenu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+        document.addEventListener("click", e => { if (mobileMenu.classList.contains("open") && !mobileMenu.contains(e.target) && !hamburger.contains(e.target)) closeMenu(); });
+    </script>
+</body>
+
+</html>

@@ -116,7 +116,8 @@
 
     /* ── Hamburger Button ── */
     .hamburger {
-      display: none;
+      display: none !important;
+      /* Strictly hide on desktop */
       flex-direction: column;
       justify-content: center;
       gap: 5px;
@@ -127,6 +128,8 @@
       cursor: pointer;
       padding: 4px;
       z-index: 200;
+      opacity: 0;
+      pointer-events: none;
     }
 
     .hamburger .bar {
@@ -593,7 +596,9 @@
       }
 
       .hamburger {
-        display: flex;
+        display: flex !important;
+        opacity: 1 !important;
+        pointer-events: all !important;
       }
 
       /* Show mobile hero content */
@@ -606,41 +611,86 @@
       }
 
       /* ══════════════════════════════════════
-         HERO — MOBILE REDESIGN
-         Text-only editorial layout, no model
+         HERO — MOBILE SIMPLE (FINAL)
       ══════════════════════════════════════ */
       #hero {
-        min-height: 80vh !important;
-        height: auto !important;
-        background: #fdfbf9 !important;
+        height: 100vh !important;
+        min-height: 100vh !important;
+        padding: 0 24px !important;
+        margin-top: 0 !important;
         display: flex !important;
         flex-direction: column !important;
         justify-content: center !important;
         align-items: center !important;
-        padding: 60px 24px !important;
-        margin-top: 54px !important;
+        background-image: url('about_main.png') !important;
+        background-size: cover !important;
+        background-position: center !important;
         text-align: center !important;
+        position: relative;
+        overflow: hidden;
       }
 
-      /* Faint DHRUVI watermark visible behind content */
-      #bg-svg {
-        opacity: 0.07;
+      /* ── Simple Overlay ── */
+      #hero::after {
+        content: "";
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
         z-index: 1;
+        display: block !important;
       }
 
-      /* ── HIDE THE MODEL IMAGE ON MOBILE ── */
+      .hero-mobile-content {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        animation: fadeIn 1.2s ease-out;
+      }
+
+      .hero-mobile-name {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 52px !important;
+        font-weight: 500;
+        color: #fff !important;
+        line-height: 1.1 !important;
+        text-transform: uppercase !important;
+        margin-bottom: 20px !important;
+        letter-spacing: 0.1em;
+      }
+
+      .hero-mobile-sub {
+        font-size: 11px !important;
+        letter-spacing: 0.4em !important;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.8) !important;
+        margin-bottom: 40px !important;
+      }
+
+      .btn-hero-mobile {
+        display: inline-block !important;
+        padding: 16px 40px !important;
+        background: #fff !important;
+        color: #000 !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.2em !important;
+        text-transform: uppercase;
+        text-decoration: none;
+        border-radius: 0;
+      }
+
+      /* Hide unused elements */
+      .left-block,
+      .right-block,
+      #bg-svg,
+      .hero-mobile-bg,
+      .hero-mobile-visuals,
       .hero-model {
         display: none !important;
-      }
-
-      /* Hide desktop gradient overlay  */
-      .hero::after {
-        display: none;
       }
 
       /* Mobile hero text footer — centered vertically */
@@ -673,15 +723,27 @@
       /* Giant editorial brand name */
       .hero-mobile-name {
         font-family: 'Cormorant Garamond', serif;
-        font-size: clamp(34px, 12vw, 54px);
+        font-size: clamp(38px, 14vw, 58px);
         font-weight: 500;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.08em;
+        font-style: italic;
         color: #1a1714;
-        text-transform: uppercase;
-        line-height: 1.1;
-        margin-bottom: 20px;
-        max-width: 280px;
+        text-transform: capitalize;
+        line-height: 1.05;
+        margin-bottom: 16px;
         text-align: center;
+      }
+
+      .hero-mobile-name em {
+        display: block;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        font-style: normal;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: #7a5545;
+        margin-bottom: 20px;
       }
 
       /* Sub caption */
@@ -1803,8 +1865,13 @@
     ═══════════════════════════════════════════ */
     @media (max-width: 380px) {
       .nav-brand {
-        font-size: 11px;
-        letter-spacing: 0.1em;
+        position: relative;
+        left: auto;
+        transform: none;
+        margin: 0 auto;
+        font-size: 14px;
+        letter-spacing: 0.2em;
+        z-index: 10;
       }
 
       .thumb {
@@ -1816,7 +1883,7 @@
         gap: 16px;
       }
     }
-  </style>
+  @media (min-width: 769px) { .hamburger, .mobile-nav, .mobile-menu { display: none !important; } } </style>
 </head>
 
 <body>
@@ -1824,9 +1891,9 @@
   <!-- Navigation -->
   <nav id="main-nav">
     <ul class="nav-left">
-      <li><a href="#" id="nav-home">Home</a></li>
-      <li><a href="#" id="nav-about">About</a></li>
-      <li><a href="#" id="nav-products">Products</a></li>
+      <li><a href="index.html" id="nav-home">Home</a></li>
+      <li><a href="about.html" id="nav-about">About</a></li>
+      <li><a href="products.html" id="nav-products">Products</a></li>
       <li><a href="contact.html" id="nav-contact">Contact</a></li>
     </ul>
 
@@ -1859,9 +1926,9 @@
 
   <!-- Mobile Drawer Menu -->
   <div class="mobile-menu" id="mobile-menu">
-    <a href="#" id="m-nav-home">Home</a>
-    <a href="#about" id="m-nav-about">About</a>
-    <a href="#products" id="m-nav-products">Products</a>
+    <a href="index.html" id="m-nav-home">Home</a>
+    <a href="about.html" id="m-nav-about">About</a>
+    <a href="products.html" id="m-nav-products">Products</a>
     <a href="contact.html" id="m-nav-contact">Contact</a>
   </div>
 
@@ -1888,7 +1955,7 @@
         footwear, lifestyle, accessories, makeup,<br>
         hairstyle, and body posture
       </p>
-      <a href="#" class="btn-discover" id="btn-discover">Discover More</a>
+      <a href="about.html" class="btn-discover" id="btn-discover">Discover More</a>
     </div>
 
     <!-- Right: New Arrival + thumbnails -->
@@ -1916,10 +1983,9 @@
 
     <!-- Mobile Hero Content -->
     <div class="hero-mobile-content">
-      <span class="hero-mobile-tag">Premium Minimalist Fashion</span>
-      <h1 class="hero-mobile-name" style="font-size: 42px; line-height: 1.1; margin: 20px 0; font-family: 'Cormorant Garamond', serif;">ELEVATE<br>YOUR<br>EVERYDAY</h1>
-      <p class="hero-mobile-sub">EST. 2024</p>
-      <a href="#about" class="btn-hero-mobile">Discover Collection</a>
+      <h1 class="hero-mobile-name">Timeless<br>Essence</h1>
+      <p class="hero-mobile-sub">ESTABLISHED 2024</p>
+      <a href="products.html" class="btn-hero-mobile">Shop Collection</a>
     </div>
 
   </section>
@@ -1944,7 +2010,7 @@
           Dhruvi Enterprise was founded on the belief that the most personal thing you own is your style.
           We set out to redefine the humble t-shirt, turning it into a premium canvas for your identity.
         </p>
-        <a href="#" class="btn-outline">Our Full Story →</a>
+        <a href="about.html" class="btn-outline">Our Full Story →</a>
       </div>
     </div>
 
@@ -1989,7 +2055,7 @@
       <span class="fashion-eyebrow">The Collection</span>
       <h2>Where Fashion Meets Freedom</h2>
       <p>Get ready to turn heads with clothing that speaks louder than words</p>
-      <a href="contact.html" class="fashion-btn">
+      <a href="products.html" class="fashion-btn">
         <span>Explore New Arrivals &nbsp;→</span>
       </a>
     </div>
@@ -2088,7 +2154,7 @@
       </div>
       <!-- CTAs -->
       <div class="editorial-cta-actions">
-        <a href="#" class="btn-cta-primary" id="btn-cta-shop">
+        <a href="products.html" class="btn-cta-primary" id="btn-cta-shop">
           Shop the Collection
           <span class="arrow">→</span>
         </a>
@@ -2113,20 +2179,20 @@
         <p>Premium fashion for the modern individual. Crafted with intention, worn with confidence. Redefining the
           everyday t-shirt since 2020.</p>
         <div class="footer-socials">
-          <a href="#" class="footer-social-btn" aria-label="Instagram" id="social-instagram">
+          <a href="https://instagram.com/dhruvi_enterprise" class="footer-social-btn" aria-label="Instagram" id="social-instagram" target="_blank">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
               <rect x="2" y="2" width="20" height="20" rx="5" />
               <circle cx="12" cy="12" r="4" />
               <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
             </svg>
           </a>
-          <a href="#" class="footer-social-btn" aria-label="WhatsApp" id="social-whatsapp">
+          <a href="https://wa.me/1234567890" class="footer-social-btn" aria-label="WhatsApp" id="social-whatsapp" target="_blank">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
               <path
                 d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
             </svg>
           </a>
-          <a href="#" class="footer-social-btn" aria-label="Email" id="social-email">
+          <a href="contact.html" class="footer-social-btn" aria-label="Email" id="social-email">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
               <rect x="2" y="4" width="20" height="16" rx="2" />
               <polyline points="2,4 12,13 22,4" />
@@ -2139,11 +2205,11 @@
       <div class="footer-col">
         <h4>Shop</h4>
         <ul>
-          <li><a href="#" id="footer-new-arrivals">New Arrivals</a></li>
-          <li><a href="#" id="footer-mens">Men's Collection</a></li>
-          <li><a href="#" id="footer-womens">Women's Collection</a></li>
-          <li><a href="#" id="footer-custom">Custom Name Prints</a></li>
-          <li><a href="#" id="footer-oversized">Oversized Tees</a></li>
+          <li><a href="products.html" id="footer-new-arrivals">New Arrivals</a></li>
+          <li><a href="products.html" id="footer-mens">Men's Collection</a></li>
+          <li><a href="products.html" id="footer-womens">Women's Collection</a></li>
+          <li><a href="products.html" id="footer-custom">Custom Name Prints</a></li>
+          <li><a href="products.html" id="footer-oversized">Oversized Tees</a></li>
         </ul>
       </div>
 
@@ -2151,7 +2217,7 @@
       <div class="footer-col">
         <h4>Company</h4>
         <ul>
-          <li><a href="#about" id="footer-about">About Us</a></li>
+          <li><a href="about.html" id="footer-about">About Us</a></li>
           <li><a href="contact.html" id="footer-contact">Contact</a></li>
           <li><a href="#" id="footer-press">Press</a></li>
           <li><a href="#" id="footer-sustainability">Sustainability</a></li>
@@ -2232,8 +2298,14 @@
     /* ── Nav link active state ── */
     document.querySelectorAll('.nav-left a').forEach(a => {
       a.addEventListener('click', e => {
-        e.preventDefault();
-        document.querySelectorAll('.nav-left a').forEach(l => l.style.color = '');
+        // Only prevent default if it's a fragment link on the same page
+        if (a.getAttribute('href').startsWith('#')) {
+          e.preventDefault();
+        }
+        document.querySelectorAll('.nav-left a').forEach(l => {
+          l.style.color = '';
+          l.style.fontWeight = '';
+        });
         a.style.color = '#1a1a1a';
         a.style.fontWeight = '600';
       });

@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customize T-Shirt - Dhruvi Enterprise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* ═══════════════════════════════════════════
+       RESET & BASE 
+    ═══════════════════════════════════════════ */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      color: #1a1714;
+      overflow-x: hidden;
+    }
+
+    /* ═══════════════════════════════════════════
+       GLOBAL SITE HEADER/FOOTER CSS
+    ═══════════════════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 44px;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.98);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-left { display: none; }
+    @media(min-width:769px) {
+      .nav-left { display: flex; gap: 28px; list-style: none; }
+      .hamburger { display: none; }
+    }
+    
+    .nav-left a { text-decoration: none; font-size: 11.5px; font-weight: 400; letter-spacing: 0.06em; color: #5a5250; transition: color 0.2s; }
+    .nav-brand { position: absolute; left: 50%; transform: translateX(-50%); font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; letter-spacing: 0.3em; color: #1a1a1a; text-decoration: none; }
+    .nav-right { display: flex; gap: 20px; align-items: center; }
+
+    .nav-right button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+    }
+
+    /* ── Hamburger Button ── */
+    .hamburger { display: none !important; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 200; opacity: 0; pointer-events: none; }
+    .hamburger .bar { width: 22px; height: 1.5px; background: #1a1a1a; border-radius: 2px; transition: all 0.3s ease; transform-origin: center; }
+    .hamburger.open .bar:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open .bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open .bar:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── Mobile Drawer Menu ── */
+    .mobile-menu { display: none; position: fixed; top: 54px; left: 0; right: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); border-bottom: 1px solid #ece9e5; z-index: 99; flex-direction: column; padding: 0; transform: translateY(-10px); opacity: 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); pointer-events: none; }
+    .mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: all; }
+    .mobile-menu a { display: block; padding: 18px 28px; text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #5a5250; border-bottom: 1px solid #f0ece8; transition: all 0.2s ease; }
+    .mobile-menu a:hover { color: #7a5545; background: #fdf9f7; padding-left: 36px; }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    .site-footer {
+      background: #fdfbf9;
+      padding: 80px 44px 0;
+      border-top: 1px solid #ece9e5;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1.4fr;
+      gap: 48px;
+      padding-bottom: 64px;
+    }
+
+    .footer-brand h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      color: #1a1714;
+    }
+
+    .footer-brand p {
+      font-size: 12px;
+      line-height: 1.85;
+      color: #7a7268;
+      max-width: 280px;
+    }
+
+    .footer-col h4,
+    .footer-newsletter h4 {
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #1a1714;
+      margin-bottom: 22px;
+      font-weight: 600;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col ul li a {
+      font-size: 12.5px;
+      color: #7a7268;
+      text-decoration: none;
+    }
+
+    .footer-newsletter p {
+      font-size: 12px;
+      color: #7a7268;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      border: 1px solid #e0dbd5;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 11px 14px;
+      border: none;
+      background: none;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .newsletter-form button {
+      padding: 11px 18px;
+      background: #1a1714;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 10px;
+      letter-spacing: .1em;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #ece9e5;
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10.5px;
+      color: #9a928e;
+    }
+
+    .footer-bottom a {
+      color: #9a928e;
+      text-decoration: none;
+    }
+
+    /* ═══════════════════════════════════════════
+       STEPPER UI
+    ═══════════════════════════════════════════ */
+    .stepper-container {
+      margin: 80px auto 30px;
+      max-width: 800px;
+      background: #fdfbf9;
+      padding: 20px 40px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+      flex: 1;
+    }
+
+    .step-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 500;
+      color: #5a5250;
+      z-index: 2;
+    }
+
+    .step-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: #5a5250;
+      letter-spacing: 0.05em;
+    }
+
+    .step-item.active .step-circle {
+      border-color: #1a1a1a;
+      color: #1a1a1a;
+    }
+
+    .step-item.active .step-label {
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .step-item.completed .step-circle {
+      background: #4caf50;
+      border-color: #4caf50;
+      color: #fff;
+      font-size: 0;
+    }
+
+    .step-item.completed .step-circle::after {
+      content: "✓";
+      font-size: 16px;
+    }
+
+    .step-item:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: 60%;
+      width: 80%;
+      height: 2px;
+      background: #ccc;
+      z-index: 1;
+    }
+
+    .step-item.completed:not(:last-child)::after {
+      background: #4caf50;
+    }
+
+    /* ═══════════════════════════════════════════
+       MAIN BUILDER AREA
+     ═══════════════════════════════════════════ */
+    .builder-layout {
+      max-width: 500px;
+      margin: 0 auto 80px auto;
+      background: #ffffff;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .builder-preview {
+      background: #eadeaa;
+      width: 100%;
+      aspect-ratio: 4/5;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: auto;
+    }
+
+    .tshirt-color-mask {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 95%;
+      height: 95%;
+      background-color: var(--shirt-color);
+      -webkit-mask-image: var(--shirt-image);
+      mask-image: var(--shirt-image);
+      -webkit-mask-size: contain;
+      mask-size: contain;
+      -webkit-mask-position: center;
+      mask-position: center;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+    }
+
+    .tshirt-shadow-map {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 95%;
+      height: 95%;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    .btn-flip {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      z-index: 10;
+      font-weight: 600;
+    }
+
+    .btn-flip:hover {
+      background: #1a1a1a;
+    }
+
+    .view-indicator {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: #fff;
+      color: #1a1a1a;
+      border: 1px solid #ccc;
+      padding: 6px 12px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      z-index: 10;
+      border-radius: 4px;
+    }
+
+    /* MATCHING DASHED PRINT AREA */
+    .print-area {
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40%;
+      height: 48%;
+      border: 1px dashed #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .print-area.hidden-brackets {
+      border-color: transparent !important;
+    }
+
+    /* Interactive Design Element */
+    .design-element {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      width: 120px;
+      min-width: 40px;
+      min-height: 40px;
+      border: 1.5px dotted transparent;
+      display: none;
+      cursor: move;
+      touch-action: none;
+      z-index: 15;
+    }
+
+    .design-element:hover,
+    .design-element.active {
+      border-color: #1a1a1a;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .design-overlay-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+    }
+
+    .design-text-layer {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-align: center;
+      word-break: break-word;
+      line-height: 1.1;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .resizer {
+      position: absolute;
+      bottom: -5px;
+      right: -5px;
+      width: 12px;
+      height: 12px;
+      background: #fff;
+      border: 2px solid #1a1a1a;
+      border-radius: 50%;
+      cursor: se-resize;
+      display: none;
+    }
+
+    .design-element:hover .resizer,
+    .design-element.active .resizer {
+      display: block;
+    }
+
+    /* ═══════════════════════════════════════════
+       ACTION BOARDS
+    ═══════════════════════════════════════════ */
+    .action-board {
+      display: none;
+      flex-direction: column;
+      background: #fff;
+    }
+
+    .action-board.active {
+      display: flex;
+    }
+
+    .config-panel {
+      padding: 30px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .config-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #5a5250;
+      margin-bottom: 10px;
+    }
+
+    /* 16 Colors Grid */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 16px;
+    }
+
+    .color-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .swatch {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+      padding: 3px;
+    }
+
+    .swatch-in {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .color-btn.selected .swatch {
+      border-color: #1a1a1a;
+    }
+
+    .color-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      color: #9a928e;
+    }
+
+    /* Size */
+    .size-grid {
+      display: flex;
+      gap: 12px;
+    }
+
+    .size-btn {
+      width: 44px;
+      height: 44px;
+      border: 1px solid #ccc;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .size-btn.selected {
+      border-color: #1a1a1a;
+      background: #1a1a1a;
+      color: #fff;
+    }
+
+    /* Emoji Gallery */
+    .emoji-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .emoji-item {
+      font-size: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 60px;
+      background: #fff;
+      border: 1px solid #e0dbd5;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .emoji-item:hover {
+      transform: translateY(-3px);
+      border-color: #1a1a1a;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    .action-tools {
+      display: flex;
+      border-top: 1px solid #ddd;
+      background: #fff;
+      width: 100%;
+    }
+
+    .tool-btn {
+      flex: 1;
+      padding: 18px 0;
+      background: none;
+      border: none;
+      border-right: 1px solid #ddd;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      color: #333;
+      font-size: 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+    }
+
+    .tool-btn:last-child {
+      border-right: none;
+    }
+
+    .tool-btn svg {
+      width: 22px;
+      height: 22px;
+      stroke-width: 1.5;
+      color: #1a1a1a;
+    }
+
+    .tool-content {
+      display: none;
+      padding: 20px 30px;
+      background: #fafaf9;
+      border-top: 1px solid #ddd;
+    }
+
+    .tool-content.active {
+      display: block;
+    }
+
+    .upload-label {
+      display: block;
+      text-align: center;
+      padding: 14px 20px;
+      background: #fff;
+      border: 1px solid #1a1a1a;
+      color: #1a1a1a;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .text-input-field {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ccc;
+      font-size: 13px;
+    }
+
+    .wizard-footer {
+      display: flex;
+      background: #fff;
+      border-top: 1px solid #eee;
+    }
+
+    .btn-wizard {
+      flex: 1;
+      padding: 20px;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .btn-wizard.secondary {
+      background: #ffffff;
+      color: #479e8c;
+    }
+
+    .btn-wizard.primary {
+      background: #4ca594;
+      color: #fff;
+    }
+
+    .btn-wizard.primary.dark {
+      background: #1a1a1a;
+      color: #fff;
+    }
+
+    /* Step 3 Formatting */
+    .summary-box {
+      background: #fafaf9;
+      padding: 30px;
+      margin-bottom: 20px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #e0dbd8;
+      padding-bottom: 15px;
+    }
+
+    .summary-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #9a928e;
+    }
+
+    .summary-val {
+      font-size: 13px;
+      font-weight: 500;
+      color: #1a1714;
+    }
+
+    /* Success Card */
+    .success-card { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: #fff; padding: 60px 40px; border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); margin: 60px auto; max-width: 500px; }
+    .success-card.active { display: flex; }
+    .success-icon { width: 80px; height: 80px; border-radius: 50%; background: #4ca594; color: #fff; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .success-icon svg { width: 40px; height: 40px; stroke-width: 2; }
+    .success-card h2 { font-family: 'Cormorant Garamond', serif; font-size: 32px; color: #1a1a1a; margin-bottom: 12px; }
+    .success-card p { font-size: 14px; color: #7a7268; margin-bottom: 30px; line-height: 1.6; }
+    .btn-home { padding: 16px 30px; background: #1a1a1a; color: #fff; text-decoration: none; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 2px; }
+
+    @media (max-width: 768px) {
+      .color-grid { grid-template-columns: repeat(4, 1fr); }
+      .builder-preview { height: 400px; }
+      .nav-left { display: none; }
+      .nav-brand { position: static; transform: none; width: auto; text-align: left; left: auto; font-size: 13px; letter-spacing: 0.1em; white-space: nowrap; }
+      .hamburger { display: flex !important; opacity: 1; pointer-events: auto; }
+      .mobile-menu { display: flex; }
+      .stepper-container { margin: 80px 20px 20px; padding: 15px 20px; flex-wrap: wrap; gap: 15px; }
+      .step-item:not(:last-child)::after { display: none; }
+      .builder-layout { margin: 0 20px 80px 20px; }
+      .config-panel { padding: 20px; }
+      .action-tools { flex-wrap: wrap; }
+      nav { padding: 0 20px; }
+    }
+  @media (min-width: 769px) { .hamburger, .mobile-nav, .mobile-menu { display: none !important; } } </style>
+</head>
+
+<body>
+
+  <!-- GLOBAL NAV -->
+  <nav id="main-nav">
+      <ul class="nav-left">
+          <li><a href="index.html" id="nav-home">Home</a></li>
+          <li><a href="about.html" id="nav-about">About</a></li>
+          <li><a href="products.html" id="nav-products" class="active">Products</a></li>
+          <li><a href="contact.html" id="nav-contact">Contact</a></li>
+      </ul>
+      <div class="nav-brand">DHRUVI ENTERPRISE</div>
+      <div class="nav-right">
+          <button id="btn-search" aria-label="Search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7.5" /><line x1="16.5" y1="16.5" x2="22" y2="22" /></svg>
+          </button>
+          <button id="btn-cart" aria-label="Cart">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" /><line x1="3" y1="6" x2="21" y2="6" /><path d="M16 10a4 4 0 01-8 0" /></svg>
+          </button>
+          <button class="hamburger" id="btn-hamburger" aria-label="Menu" aria-expanded="false">
+              <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          </button>
+      </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- STEPPER -->
+  <div class="stepper-container">
+    <div class="step-item active" id="indicator-1">
+      <div class="step-circle">1</div>
+      <div class="step-label">Pick Color & Size</div>
+    </div>
+    <div class="step-item" id="indicator-2">
+      <div class="step-circle">2</div>
+      <div class="step-label">Finalise Design</div>
+    </div>
+    <div class="step-item" id="indicator-3">
+      <div class="step-circle">3</div>
+      <div class="step-label">Preview</div>
+    </div>
+  </div>
+
+  <div class="builder-layout">
+    <div class="builder-preview">
+      <div class="view-indicator" id="view-indicator">FRONT VIEW</div>
+      <button class="btn-flip" id="btn-flip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M4 12V8a4 4 0 0 1 4-4h8M16 4l4 4-4 4M20 12v4a4 4 0 0 1-4 4H8M8 20L4 16l4-4" />
+        </svg>
+        Flip
+      </button>
+
+      <!-- True Photorealistic Masking Setup -->
+      <div class="tshirt-color-mask" id="tshirt-base"
+        style="--shirt-color: #ffffff; --shirt-image: url('tshirt-front.png');"></div>
+      <img src="tshirt-front.png" class="tshirt-shadow-map" id="tshirt-shadow"
+        onerror="this.style.display='none'; document.getElementById('tshirt-base').style.backgroundColor='transparent';" />
+
+      <!-- Print Area overlay -->
+      <div class="print-area" id="print-area">
+        <div class="design-element" id="design-element">
+          <img src="" class="design-overlay-img" id="design-img" style="display:none;" />
+          <div class="design-text-layer" id="design-text" style="display:none;"></div>
+          <div class="resizer" id="resizer"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTION BOARD 1 -->
+    <div class="action-board active" id="step-1">
+      <div class="config-panel">
+        <div>
+          <div class="config-title">1. Select Color</div>
+          <div class="color-grid">
+            <div class="color-btn selected" data-color="white" data-hex="#ffffff" data-label="White">
+              <div class="swatch">
+                <div class="swatch-in" style="background:#fff;"></div>
+              </div>
+              <div class="color-label">White</div>
+            </div>
+            <div class="color-btn" data-color="black" data-hex="#2a2a2a" data-label="Black">
+              <div class="swatch">
+                <div class="swatch-in" style="background:#1a1a1a;"></div>
+              </div>
+              <div class="color-label">Black</div>
+            </div>
+            <div class="color-btn" data-color="grey" data-hex="#e0e0e0" data-label="Grey">
+              <div class="swatch">
+                <div class="swatch-in" style="background:#e0e0e0;"></div>
+              </div>
+              <div class="color-label">Grey</div>
+            </div>
+            <div class="color-btn" data-color="navy" data-hex="#1b2a47" data-label="Navy">
+              <div class="swatch">
+                <div class="swatch-in" style="background:#1b2a47;"></div>
+              </div>
+              <div class="color-label">Navy</div>
+            </div>
+            <div class="color-btn" data-color="maroon" data-hex="#632626" data-label="Maroon">
+              <div class="swatch">
+                <div class="swatch-in" style="background:#632626;"></div>
+              </div>
+              <div class="color-label">Maroon</div>
+            </div>
+            <div class="color-btn" data-color="forest" data-hex="#265e3b" data-label="Forest">
+              <div class="swatch">
+                <div class="swatch-in" style="background:#265e3b;"></div>
+              </div>
+              <div class="color-label">Forest</div>
+            </div>
+            <div class="color-btn" data-color="mustard" data-hex="#dca238" data-label="Mustard">
+              <div class="swatch">
+                <div class="swatch-in" style="background:#dca238;"></div>
+              </div>
+              <div class="color-label">Mustard</div>
+            </div>
+            <div class="color-btn" data-color="pink" data-hex="#f2c1cf" data-label="Pink">
+              <div class="swatch">
+                <div class="swatch-in" style="background:#f2c1cf;"></div>
+              </div>
+              <div class="color-label">Pink</div>
+            </div>
+            <div class="color-btn" data-color="mint" data-hex="#a2dfbe" data-label="Mint">
+              <div class="swatch">
+                <div class="swatch-in" style="background:#a2dfbe;"></div>
+              </div>
+              <div class="color-label">Mint</div>
+            </div>
+            <div class="color-btn" data-color="purple" data-hex="#513063" data-label="Purple">
+              <div class="swatch">
+                <div class="swatch-in" style="background:#513063;"></div>
+              </div>
+              <div class="color-label">Purple</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 10px;">
+          <div class="config-title">2. Select Size</div>
+          <div class="size-grid">
+            <div class="size-btn">S</div>
+            <div class="size-btn selected">M</div>
+            <div class="size-btn">L</div>
+            <div class="size-btn">XL</div>
+          </div>
+        </div>
+      </div>
+      <div class="wizard-footer"><button class="btn-wizard primary dark" onclick="goToStep(2)">NEXT: DESIGN
+          STAGE</button></div>
+    </div>
+
+    <!-- ACTION BOARD 2 -->
+    <div class="action-board" id="step-2">
+      <div class="tool-content active" id="panel-text">
+        <div class="config-title">Add Text</div>
+        <input type="text" class="text-input-field" id="input-custom-text" placeholder="Type your text here..."
+          maxlength="20">
+      </div>
+      <div class="tool-content" id="panel-upload">
+        <div class="config-title">Upload Design</div>
+        <label class="upload-label">BROWSE FILES <input type="file" id="input-upload-image" accept="image/*" /></label>
+      </div>
+      <div class="tool-content" id="panel-gallery">
+        <div class="config-title">Sticker Gallery</div>
+        <div class="emoji-grid">
+          <div class="emoji-item" onclick="applyEmoji('🔥')">🔥</div>
+          <div class="emoji-item" onclick="applyEmoji('❤️')">❤️</div>
+          <div class="emoji-item" onclick="applyEmoji('💀')">💀</div>
+          <div class="emoji-item" onclick="applyEmoji('👑')">👑</div>
+          <div class="emoji-item" onclick="applyEmoji('👽')">👽</div>
+          <div class="emoji-item" onclick="applyEmoji('⭐')">⭐</div>
+          <div class="emoji-item" onclick="applyEmoji('🚀')">🚀</div>
+          <div class="emoji-item" onclick="applyEmoji('🍕')">🍕</div>
+        </div>
+      </div>
+
+      <div class="action-tools">
+        <button class="tool-btn" onclick="openTool('text')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M4 7V4h16v3M9 20h6M12 4v16" />
+          </svg>
+          Add Text
+        </button>
+        <button class="tool-btn" onclick="openTool('upload')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+            <circle cx="8.5" cy="8.5" r="1.5" />
+            <polyline points="21 15 16 10 5 21" />
+          </svg>
+          Upload
+        </button>
+        <button class="tool-btn" onclick="openTool('gallery')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+            <line x1="3" y1="9" x2="21" y2="9" />
+            <line x1="9" y1="21" x2="9" y2="9" />
+          </svg>
+          Gallery
+        </button>
+      </div>
+      <div class="wizard-footer"><button class="btn-wizard secondary" onclick="goToStep(1)">SAVE</button><button
+          class="btn-wizard primary" onclick="goToStep(3)">NEXT</button></div>
+    </div>
+
+    <!-- ACTION BOARD 3 -->
+    <div class="action-board" id="step-3">
+      <div class="config-panel">
+        <h2 style="font-family:'Cormorant Garamond',serif; font-size:28px;">Order Details</h2>
+        <div class="summary-box">
+          <div class="summary-row"><span class="summary-title">Color</span><span class="summary-val"
+              id="sum-color">White</span></div>
+          <div class="summary-row"><span class="summary-title">Size</span><span class="summary-val"
+              id="sum-size">M</span></div>
+          <div class="summary-row"><span class="summary-title">Base Price (<span id="sum-desc"></span>)</span><span
+              class="summary-val" id="sum-base-price">₹499</span></div>
+          <div class="summary-row" id="sum-addon-row"><span class="summary-title">+ Two-Sided Print Add-on</span><span
+              class="summary-val">+ ₹100.00</span></div>
+          <div class="summary-row" style="border:none; padding:0; margin:0;"><span class="summary-title"
+              style="color:#7a5545;">Total Price</span><span class="summary-val"
+              style="color:#7a5545; font-size: 20px; font-weight:600;" id="sum-total">₹599.00</span></div>
+        </div>
+      </div>
+      <div class="wizard-footer"><button class="btn-wizard secondary" onclick="goToStep(2)">EDIT DESIGN</button><button
+          class="btn-wizard primary dark" onclick="confirmOrder()">CONFIRM ORDER</button></div>
+    </div>
+
+  </div>
+
+  <div class="success-card" id="success-card">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </div>
+    <h2>Order Confirmed</h2>
+    <p>Thank you for choosing Dhruvi Enterprise. Your custom design order has been received securely and is being processed. A detailed receipt has been dispatched to your email.</p>
+    <a href="products.html" class="btn-home">CONTINUE SHOPPING</a>
+  </div>
+
+  <script>
+    // URL Params parsing
+    const params = new URLSearchParams(window.location.search);
+    const sGender = params.get('gender') || 'men';
+    const sFit = params.get('fit') || 'regular';
+    const sColor = params.get('color') || 'white';
+
+    // Pricing Logic
+    let basePrice = 499;
+    if (sGender === 'men' && sFit === 'oversized') basePrice = 599;
+    if (sGender === 'women' && sFit === 'regular') basePrice = 449;
+    if (sGender === 'women' && sFit === 'oversized') basePrice = 549;
+
+    // Dual-Sided State Engine
+    const state = {
+      gender: sGender,
+      fit: sFit,
+      color: sColor,
+      view: 'front', // front | back
+      designs: {
+        front: { text: '', imgSrc: null },
+        back: { text: '', imgSrc: null }
+      }
+    };
+
+    const imgBase = document.getElementById('tshirt-base');
+    const imgShadow = document.getElementById('tshirt-shadow');
+    const colorBtns = document.querySelectorAll('.color-btn');
+    const sizeBtns = document.querySelectorAll('.size-btn');
+    const printArea = document.getElementById('print-area');
+    const dElem = document.getElementById('design-element');
+    const dText = document.getElementById('design-text');
+    const dImg = document.getElementById('design-img');
+    const textInput = document.getElementById('input-custom-text');
+
+    function updateBaseImage() {
+      const elColorDesc = document.querySelector(`.color-btn[data-color="${state.color}"]`);
+      if (!elColorDesc) return;
+
+      const targetHex = elColorDesc.dataset.hex;
+      imgBase.style.setProperty('--shirt-color', targetHex);
+
+      const isDark = (state.color === 'black' || state.color === 'navy' || state.color === 'maroon' || state.color === 'forest' || state.color === 'purple');
+      if (isDark) {
+        printArea.style.borderColor = '#ffffff';
+        dText.style.color = '#ffffff';
+      } else {
+        printArea.style.borderColor = '#1a1a1a';
+        dText.style.color = '#1a1a1a';
+      }
+
+      if (state.view === 'back') {
+        imgShadow.src = 'tshirt-back.png';
+        imgBase.style.setProperty('--shirt-image', `url('tshirt-back.png')`);
+      } else {
+        imgShadow.src = 'tshirt-front.png';
+        imgBase.style.setProperty('--shirt-image', `url('tshirt-front.png')`);
+      }
+    }
+
+    // Interactive Drag and Resize Logic
+    let isDragging = false;
+    let isResizing = false;
+    let startX, startY;
+    let startWidth, startLeft, startTop;
+
+    function initDragResize() {
+      // Dragging
+      dElem.addEventListener('mousedown', dragStart);
+      dElem.addEventListener('touchstart', dragStart, { passive: false });
+
+      // Resizing
+      document.getElementById('resizer').addEventListener('mousedown', resizeStart);
+      document.getElementById('resizer').addEventListener('touchstart', resizeStart, { passive: false });
+
+      document.addEventListener('mousemove', dragResizing);
+      document.addEventListener('touchmove', dragResizing, { passive: false });
+      document.addEventListener('mouseup', endActions);
+      document.addEventListener('touchend', endActions);
+    }
+
+    function dragStart(e) {
+      if (e.target === document.getElementById('resizer')) return;
+      isDragging = true;
+      startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+      startY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
+      startLeft = dElem.offsetLeft;
+      startTop = dElem.offsetTop;
+      dElem.classList.add('active');
+    }
+
+    function resizeStart(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      isResizing = true;
+      startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+      startWidth = dElem.offsetWidth;
+      dElem.classList.add('active');
+    }
+
+    function dragResizing(e) {
+      if (!isDragging && !isResizing) return;
+      e.preventDefault();
+      const clientX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+      const clientY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
+
+      if (isDragging) {
+        let dx = clientX - startX;
+        let dy = clientY - startY;
+        let newX = startLeft + dx;
+        let newY = startTop + dy;
+
+        // Optional bounds checking could go here, but pure raw transform gives perfect flow
+        dElem.style.left = newX + 'px';
+        dElem.style.top = newY + 'px';
+      } else if (isResizing) {
+        let dx = clientX - startX;
+        let newWidth = Math.max(40, startWidth + dx);
+        
+        dElem.style.width = newWidth + 'px';
+
+        // Auto scale text to fit container smoothly
+        if (dText.style.display !== 'none') {
+          dText.style.fontSize = Math.max(12, newWidth / 4) + 'px';
+        }
+      }
+    }
+
+    function endActions() {
+      isDragging = false;
+      isResizing = false;
+      dElem.classList.remove('active');
+    }
+
+    // Refresh Design Render Box
+    function renderDesignBox() {
+      const currentD = state.designs[state.view];
+
+      if (currentD.text || currentD.imgSrc) {
+        printArea.style.borderColor = isDarkColor() ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)';
+        if(dElem.style.display === 'none' || dElem.style.display === '') {
+          dElem.style.display = 'block';
+          // auto-center safely
+          setTimeout(() => {
+            dElem.style.left = (printArea.offsetWidth/2 - dElem.offsetWidth/2) + 'px';
+            dElem.style.top = (printArea.offsetHeight/2 - dElem.offsetHeight/2) + 'px';
+          }, 10);
+        }
+      } else {
+        printArea.style.borderColor = 'transparent';
+        dElem.style.display = 'none';
+      }
+
+      if (currentD.text) {
+        dText.style.display = 'flex';
+        dText.innerText = currentD.text;
+        dImg.style.display = 'none';
+        textInput.value = currentD.text;
+      } else if (currentD.imgSrc) {
+        dImg.style.display = 'block';
+        dImg.src = currentD.imgSrc;
+        dText.style.display = 'none';
+        textInput.value = '';
+      } else {
+        dText.style.display = 'none';
+        dImg.style.display = 'none';
+        textInput.value = '';
+      }
+    }
+
+    function isDarkColor() {
+      return ['black', 'navy', 'maroon', 'forest', 'purple'].includes(state.color);
+    }
+
+    // Initialization bindings
+    colorBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        colorBtns.forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        state.color = btn.dataset.color;
+        updateBaseImage();
+      });
+    });
+
+    sizeBtns.forEach(btn => btn.addEventListener('click', () => {
+      sizeBtns.forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    }));
+
+    // Flip logic
+    document.getElementById('btn-flip').addEventListener('click', () => {
+      state.view = state.view === 'front' ? 'back' : 'front';
+      document.getElementById('view-indicator').innerText = state.view.toUpperCase() + " VIEW";
+      updateBaseImage();
+      renderDesignBox();
+    });
+
+    // Inputs logic
+    textInput.addEventListener('input', (e) => {
+      state.designs[state.view].text = e.target.value;
+      state.designs[state.view].imgSrc = null;
+      renderDesignBox();
+    });
+
+    document.getElementById('input-upload-image').addEventListener('change', (e) => {
+      if (e.target.files && e.target.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (evt) {
+          state.designs[state.view].imgSrc = evt.target.result;
+          state.designs[state.view].text = '';
+          renderDesignBox();
+        }
+        reader.readAsDataURL(e.target.files[0]);
+      }
+    });
+
+    // Gallery Dynamic Canvas Emoji Extractor
+    function applyEmoji(emojiStr) {
+      const cvs = document.createElement('canvas');
+      cvs.width = 400;
+      cvs.height = 400;
+      const ctx = cvs.getContext('2d');
+      ctx.font = '280px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      // Adjust vertical placement slightly for baseline alignment
+      ctx.fillText(emojiStr, 200, 230);
+
+      state.designs[state.view].imgSrc = cvs.toDataURL('image/png');
+      state.designs[state.view].text = '';
+      renderDesignBox();
+    }
+
+    // Stepper logic
+    function goToStep(stepNum) {
+      document.querySelectorAll('.step-item').forEach((ind, i) => {
+        ind.classList.remove('active', 'completed');
+        if (i + 1 < stepNum) ind.classList.add('completed');
+        if (i + 1 === stepNum) ind.classList.add('active');
+      });
+      document.querySelectorAll('.action-board').forEach((b, i) => {
+        b.classList.remove('active');
+        if (i + 1 === stepNum) b.classList.add('active');
+      });
+
+      if (stepNum === 3) {
+        document.getElementById('sum-color').innerText = document.querySelector('.color-btn.selected').dataset.label;
+        document.getElementById('sum-size').innerText = document.querySelector('.size-btn.selected').innerText;
+        document.getElementById('sum-desc').innerText = `${state.gender.charAt(0).toUpperCase() + state.gender.slice(1)}'s ${state.fit}`;
+        document.getElementById('sum-base-price').innerText = `₹${basePrice}`;
+
+        let hasFront = state.designs.front.text || state.designs.front.imgSrc;
+        let hasBack = state.designs.back.text || state.designs.back.imgSrc;
+
+        let extras = 0;
+        if (hasFront && hasBack) {
+          extras = 100;
+          document.getElementById('sum-addon-row').style.display = 'flex';
+        } else {
+          document.getElementById('sum-addon-row').style.display = 'none';
+        }
+        document.getElementById('sum-total').innerText = `₹${basePrice + extras}.00`;
+      }
+    }
+
+    function openTool(tool) {
+      document.querySelectorAll('.tool-content').forEach(el => el.classList.remove('active'));
+      let tNode = document.getElementById(`panel-${tool}`);
+      if (tNode) tNode.classList.add('active');
+    }
+
+    function confirmOrder() {
+      // Hide builders
+      const layout = document.querySelector('.builder-layout');
+      const stepper = document.querySelector('.stepper-container');
+      if(layout) layout.style.display = 'none';
+      if(stepper) stepper.style.display = 'none';
+
+      // Show success
+      const success = document.getElementById('success-card');
+      if(success) success.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Init Calls
+    document.querySelector(`.color-btn[data-color="white"]`).classList.remove('selected');
+    if (document.querySelector(`.color-btn[data-color="${state.color}"]`)) {
+      document.querySelector(`.color-btn[data-color="${state.color}"]`).classList.add('selected');
+    } else {
+      document.querySelector(`.color-btn[data-color="white"]`).classList.add('selected');
+    }
+    updateBaseImage();
+    renderDesignBox();
+    initDragResize();
+
+    // Mobile Menu
+    document.addEventListener("DOMContentLoaded", () => {
+      const hamburger = document.getElementById("btn-hamburger");
+      const mobileMenu = document.getElementById("mobile-menu");
+      
+      const openMenu = () => {
+        hamburger.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        mobileMenu.style.display = 'flex';
+        requestAnimationFrame(() => mobileMenu.classList.add('open'));
+      };
+
+      const closeMenu = () => {
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('open');
+        setTimeout(() => { mobileMenu.style.display = 'none'; }, 300);
+      };
+
+      if(hamburger) {
+        hamburger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          hamburger.classList.contains('open') ? closeMenu() : openMenu();
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+        document.addEventListener('click', (e) => {
+          if (mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && !hamburger.contains(e.target)) closeMenu();
+        });
+      }
+    });
+
+  </script>
+</body>
+
+</html>
