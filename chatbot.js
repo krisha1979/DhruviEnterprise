@@ -7,7 +7,7 @@
   'use strict';
 
   /* ─── CONFIG ─── */
-  const GEMINI_API_KEY = 'AIzaSyDtk1haXmjoO-3WdweZ_fHa5xO6PRWDSsU'; // <-- Replace with your key
+  const GEMINI_API_KEY = 'AIzaSyBUOFdHDWsQH9_6PbOEnGXQQqBFFQ2MpIA'; // <-- Replace with your key
   const GEMINI_MODEL = 'gemini-2.5-flash-lite';
   const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
 
