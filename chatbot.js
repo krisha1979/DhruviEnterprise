@@ -370,10 +370,13 @@
         box-shadow: none;
       }
       #dhrv-chat-header {
-        padding: 56px 20px 20px;
+        padding: 42px 20px 20px;
       }
       #dhrv-chat-close-mobile {
         display: flex;
+        background: hsla(0, 0%, 100%, 0.15);
+        border: 1px solid hsla(0, 0%, 100%, 0.2);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       }
       #dhrv-chat-messages {
         padding: 20px 20px;

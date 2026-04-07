@@ -584,7 +584,7 @@
 
       .nav-brand {
         font-size: 13px;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.12em;
       }
 
       .nav-right {
@@ -618,7 +618,7 @@
         flex-direction: column !important;
         justify-content: center !important;
         align-items: center !important;
-        background-image: url('about_main.png') !important;
+        background-image: url('https://images.unsplash.com/photo-1738636591526-bfcb5328cdcf?w=900&auto=format&fit=crop&q=60') !important;
         background-size: cover !important;
         background-position: center !important;
         text-align: center !important;
@@ -1198,6 +1198,12 @@
       gap: 6px;
     }
 
+    .cta-stat-num-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+    }
+
     .cta-stat-num {
       font-family: 'Cormorant Garamond', serif;
       font-size: 38px;
@@ -1205,6 +1211,13 @@
       color: #c5a48a;
       line-height: 1;
       letter-spacing: -0.02em;
+    }
+
+    .cta-stat-suffix {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      color: #c5a48a;
+      line-height: 1;
     }
 
     .cta-stat-label {
@@ -1735,8 +1748,9 @@
       }
 
       .cta-stat-row {
-        gap: 24px;
-        flex-wrap: wrap;
+        gap: 20px;
+        flex-wrap: nowrap;
+        justify-content: space-between;
       }
 
       .cta-stat-num {
@@ -1769,8 +1783,27 @@
       }
 
       .cta-stat-row {
-        flex-direction: column;
-        gap: 16px;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: nowrap;
+      }
+
+      .cta-stat-num-wrap {
+        gap: 1px;
+      }
+
+      .cta-stat-num {
+        font-size: 24px;
+      }
+
+      .cta-stat-suffix {
+        font-size: 16px;
+      }
+
+      .cta-stat-label {
+        font-size: 8px;
+        white-space: nowrap;
       }
     }
 
@@ -1871,7 +1904,7 @@
         style="font-size: 42px; line-height: 1.1; margin: 20px 0; font-family: 'Cormorant Garamond', serif;">
         ELEVATE<br>YOUR<br>EVERYDAY</h1>
       <p class="hero-mobile-sub">EST. 2024</p>
-      <a href="#about" class="btn-hero-mobile">Discover Collection</a>
+      <a href="products.html" class="btn-hero-mobile">Discover Collection</a>
     </div>
 
   </section>
@@ -2028,15 +2061,24 @@
       <!-- Brand Numbers -->
       <div class="cta-stat-row">
         <div class="cta-stat">
-          <span class="cta-stat-num">500+</span>
+          <div class="cta-stat-num-wrap">
+            <span class="cta-stat-num" data-target="500">0</span>
+            <span class="cta-stat-suffix">+</span>
+          </div>
           <span class="cta-stat-label">Unique Designs</span>
         </div>
         <div class="cta-stat">
-          <span class="cta-stat-num">10K+</span>
+          <div class="cta-stat-num-wrap">
+            <span class="cta-stat-num" data-target="10000">0</span>
+            <span class="cta-stat-suffix">K+</span>
+          </div>
           <span class="cta-stat-label">Happy Customers</span>
         </div>
         <div class="cta-stat">
-          <span class="cta-stat-num">4+</span>
+          <div class="cta-stat-num-wrap">
+            <span class="cta-stat-num" data-target="4">0</span>
+            <span class="cta-stat-suffix">+</span>
+          </div>
           <span class="cta-stat-label">Years Premium</span>
         </div>
       </div>
@@ -2222,6 +2264,53 @@
         closeMenu();
       }
     });
+
+    /* ── Auto-Counting Animation ── */
+    const stats = document.querySelectorAll('.cta-stat-num');
+    const statsSection = document.querySelector('.cta-stat-row');
+
+    const animateStats = () => {
+      stats.forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const increment = target / (duration / 16);
+        let current = 0;
+
+        const updateCount = () => {
+          current += increment;
+          if (current < target) {
+            if (target === 10000) {
+              stat.innerText = (current / 1000).toFixed(1).replace('.0', '');
+            } else {
+              stat.innerText = Math.floor(current);
+            }
+            requestAnimationFrame(updateCount);
+          } else {
+            if (target === 10000) {
+              stat.innerText = '10';
+            } else {
+              stat.innerText = target;
+            }
+          }
+        };
+        updateCount();
+      });
+    };
+
+    const observerOptions = {
+      threshold: 0.5
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateStats();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    if (statsSection) observer.observe(statsSection);
   </script>
 
   <!-- ✦ AI Style Assistant -->
