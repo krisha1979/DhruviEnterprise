@@ -43,13 +43,16 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 44px;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.03);
     }
 
     .nav-left {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
       gap: 28px;
       list-style: none;
@@ -57,10 +60,10 @@
 
     .nav-left a {
       text-decoration: none;
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 400;
-      letter-spacing: 0.08em;
-      color: #7a7068;
+      letter-spacing: 0.06em;
+      color: #5a5250;
       transition: color 0.2s;
     }
 
@@ -74,13 +77,10 @@
     }
 
     .nav-brand {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
       font-family: 'Cormorant Garamond', serif;
-      font-size: 19px;
+      font-size: 20px;
       font-weight: 600;
-      letter-spacing: 0.32em;
+      letter-spacing: 0.3em;
       color: #1a1a1a;
       text-transform: uppercase;
       white-space: nowrap;
@@ -89,7 +89,6 @@
 
     .nav-right {
       display: flex;
-      gap: 14px;
       align-items: center;
     }
 
@@ -639,7 +638,7 @@
     /* ── Mobile: tighter layout ── */
     @media (max-width: 600px) {
       nav {
-        padding: 0 18px;
+        padding: 0 16px;
       }
 
       .hamburger {
@@ -649,31 +648,52 @@
       }
 
       .nav-left {
-        display: none;
+        display: none !important;
       }
 
       .nav-brand {
-        position: relative;
-        left: auto;
-        transform: none;
-        margin: 0 auto;
-        font-size: 15px;
-        letter-spacing: 0.22em;
-        z-index: 10;
+        font-size: 14px;
+        letter-spacing: 0.12em;
       }
 
       .panel-img {
-        flex: 0 0 220px;
+        flex: 0 0 200px;
+      }
+
+      .img-tagline h2 {
+        font-size: 19px;
       }
 
       .panel-methods {
-        padding: 20px 20px 24px;
-        gap: 8px;
+        padding: 16px 20px 24px;
+        gap: 6px;
+      }
+
+      .contact-card {
+        padding: 10px 12px;
+        gap: 10px;
+      }
+
+      .card-icon {
+        width: 32px;
+        height: 32px;
+      }
+
+      .card-value {
+        font-size: 11px;
       }
 
       .panel-right {
-        padding: 32px 20px 80px;
-        /* bottom pad for brand-strip */
+        padding: 28px 20px 80px;
+      }
+
+      .form-title {
+        font-size: 32px;
+      }
+
+      .form-subtitle {
+        font-size: 10px;
+        margin-bottom: 24px;
       }
 
       /* Name + Email: collapse to single column */
@@ -683,62 +703,40 @@
       }
 
       .form-group {
-        margin-bottom: 24px;
+        margin-bottom: 20px;
       }
 
-      textarea.form-input {
-        height: 80px;
-      }
-
-      .form-subtitle {
-        margin-bottom: 24px;
-      }
-
-      .brand-strip {
-        height: auto;
-        min-height: 44px;
-        padding: 10px 20px;
-        flex-wrap: wrap;
-        gap: 6px;
-      }
-
-      .brand-strip p {
+      .btn-submit {
+        padding: 14px 0;
         font-size: 9px;
       }
 
-      .back-link {
-        display: none;
-        /* Removed redundant Home link on mobile as per user request */
+      .brand-strip {
+        padding: 8px 16px;
       }
 
-      .contact-card {
-        padding: 11px 14px;
-        gap: 12px;
-      }
-
-      .img-tagline {
-        left: 20px;
-        bottom: 14px;
-      }
-
-      .img-tagline h2 {
-        font-size: 20px;
+      .brand-strip p {
+        font-size: 8.5px;
       }
     }
 
-    /* ── Very small (≤ 380px) ── */
-    @media (max-width: 380px) {
+    /* ── Very small (≤ 340px) ── */
+    @media (max-width: 340px) {
       .nav-brand {
         font-size: 12px;
-        letter-spacing: 0.15em;
-      }
-
-      .panel-img {
-        flex: 0 0 180px;
+        letter-spacing: 0.1em;
       }
 
       .form-title {
-        font-size: clamp(24px, 8vw, 36px);
+        font-size: 28px;
+      }
+
+      .panel-methods {
+        padding: 12px 14px;
+      }
+
+      .contact-card {
+        padding: 8px 10px;
       }
     }
 
@@ -757,6 +755,8 @@
 
   <!-- Navigation -->
   <nav id="main-nav">
+    <a href="index.html" class="nav-brand">DHRUVI ENTERPRISE</a>
+
     <ul class="nav-left">
       <li><a href="index.html" id="nav-home">Home</a></li>
       <li><a href="about.html" id="nav-about">About</a></li>
@@ -764,23 +764,7 @@
       <li><a href="contact.html" id="nav-contact" class="active">Contact</a></li>
     </ul>
 
-    <a href="index.html" class="nav-brand">DHRUVI ENTERPRISE</a>
-
     <div class="nav-right">
-      <button id="btn-search" title="Search" aria-label="Search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <circle cx="11" cy="11" r="7.5" />
-          <line x1="16.5" y1="16.5" x2="22" y2="22" />
-        </svg>
-      </button>
-      <button id="btn-cart" title="Cart" aria-label="Cart">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-          <line x1="3" y1="6" x2="21" y2="6" />
-          <path d="M16 10a4 4 0 01-8 0" />
-        </svg>
-      </button>
-
       <!-- Hamburger (mobile only) -->
       <button class="hamburger" id="btn-hamburger" aria-label="Menu" aria-expanded="false">
         <span class="bar"></span>
@@ -795,7 +779,7 @@
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="products.html">Products</a>
-    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="active">Contact</a>
   </div>
 
   <!-- Single-Screen Contact Layout -->
@@ -818,7 +802,7 @@
         <div class="methods-label">Reach Us Directly</div>
 
         <!-- WhatsApp -->
-        <a href="https://wa.me/1234567890" class="contact-card" target="_blank" id="link-whatsapp">
+        <a href="https://wa.me/918511211415" class="contact-card" target="_blank" id="link-whatsapp">
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
               <path
@@ -827,7 +811,7 @@
           </div>
           <div class="card-info">
             <div class="card-platform">WhatsApp</div>
-            <div class="card-value">+1 (234) 567-890</div>
+            <div class="card-value">+91 85112 11415</div>
           </div>
           <span class="card-arrow">→</span>
         </a>
@@ -849,7 +833,7 @@
         </a>
 
         <!-- Phone -->
-        <a href="tel:+1234567890" class="contact-card" id="link-phone">
+        <a href="tel:+918511211415" class="contact-card" id="link-phone">
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
               <path
@@ -858,7 +842,7 @@
           </div>
           <div class="card-info">
             <div class="card-platform">Call Us</div>
-            <div class="card-value">+1 (234) 567-890</div>
+            <div class="card-value">+91 85112 11415</div>
           </div>
           <span class="card-arrow">→</span>
         </a>
@@ -919,17 +903,36 @@
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      btnText.textContent = 'Delivering...';
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+
+      // Construct a professional message for WhatsApp
+      let whatsappMessage = `Hello Dhruvi Enterprise,\n\n`;
+      whatsappMessage += `My name is: ${name}\n`;
+      whatsappMessage += `Email: ${email}\n`;
+      whatsappMessage += `Subject: ${subject}\n\n`;
+      whatsappMessage += `Message:\n${message}`;
+
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+      const whatsappUrl = `https://wa.me/918511211415?text=${encodedMessage}`;
+
+      btnText.textContent = 'Opening WhatsApp...';
       btn.style.pointerEvents = 'none';
 
       setTimeout(() => {
-        btnText.textContent = '✓ Message Sent';
-        form.reset();
+        btnText.textContent = '✓ Redirecting';
+        // Open WhatsApp in a new tab
+        window.open(whatsappUrl, '_blank');
+        
         setTimeout(() => {
           btnText.textContent = 'Send Message  →';
           btn.style.pointerEvents = '';
+          form.reset();
         }, 3000);
-      }, 1500);
+      }, 800);
     });
 
     /* ── Hamburger Menu ── */

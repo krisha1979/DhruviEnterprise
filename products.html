@@ -1,122 +1,602 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Customized T-Shirts - Dhruvi Enterprise</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
 
   <style>
     /* ═══════════════════════════════════════════
        RESET & BASE
     ═══════════════════════════════════════════ */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { width: 100%; height: 100%; background: #ffffff; font-family: 'Montserrat', sans-serif; color: #1a1714; }
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      color: #1a1714;
+    }
 
     /* ═══════════════════════════════════════════
        GLOBAL SITE HEADER/FOOTER CSS
     ═══════════════════════════════════════════ */
-    nav { position: fixed; top: 0; left: 0; right: 0; height: 54px; display: flex; align-items: center; justify-content: space-between; padding: 0 44px; z-index: 100; background: rgba(255, 255, 255, 0.98); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
-    .nav-left { display: flex; gap: 28px; list-style: none; }
-    .nav-left a { text-decoration: none; font-size: 11.5px; font-weight: 400; letter-spacing: 0.06em; color: #5a5250; transition: color 0.2s; }
-    .nav-left a:hover, .nav-left a.active { color: #1a1a1a; font-weight: 600; }
-    .nav-brand { position: absolute; left: 50%; transform: translateX(-50%); font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; letter-spacing: 0.3em; color: #1a1a1a; text-decoration: none; }
-    .nav-right { display: flex; gap: 20px; align-items: center; }
-    .nav-right button { background: none; border: none; cursor: pointer; color: #1a1a1a; display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; }
-    .nav-right svg { width: 18px; height: 18px; stroke-width: 1.5; }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 44px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .nav-left {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-left a {
+      text-decoration: none;
+      font-size: 11.5px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: #5a5250;
+      transition: color 0.2s;
+    }
+
+    .nav-left a:hover,
+    .nav-left a.active {
+      color: #1a1a1a;
+      font-weight: 600;
+    }
+
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      color: #1a1a1a;
+      text-decoration: none;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-right button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+    }
+
+    .nav-right svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 1.5;
+    }
+
     /* ── Hamburger Button ── */
-    .hamburger { display: none !important; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 200; opacity: 0; pointer-events: none; }
-    .hamburger .bar { width: 22px; height: 1.5px; background: #1a1a1a; border-radius: 2px; transition: all 0.3s ease; transform-origin: center; }
-    .hamburger.open .bar:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .hamburger.open .bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    .hamburger.open .bar:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .hamburger {
+      display: none !important;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .hamburger .bar {
+      width: 22px;
+      height: 1.5px;
+      background: #1a1a1a;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    .hamburger.open .bar:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+
+    .hamburger.open .bar:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .hamburger.open .bar:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
 
     /* ── Mobile Drawer Menu ── */
-    .mobile-menu { display: none; position: fixed; top: 54px; left: 0; right: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); border-bottom: 1px solid #ece9e5; z-index: 99; flex-direction: column; padding: 0; transform: translateY(-10px); opacity: 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); pointer-events: none; }
-    .mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: all; }
-    .mobile-menu a { display: block; padding: 18px 28px; text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #5a5250; border-bottom: 1px solid #f0ece8; transition: all 0.2s ease; }
-    .mobile-menu a:hover { color: #7a5545; background: #fdf9f7; padding-left: 36px; }
-    .mobile-menu a:last-child { border-bottom: none; }
-    
-    .site-footer { background: #fdfbf9; padding: 80px 44px 0; border-top: 1px solid #ece9e5; margin-top: 60px; }
-    .footer-top { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1.4fr; gap: 48px; padding-bottom: 64px; }
-    .footer-brand h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; line-height: 1.15; margin-bottom: 18px; color: #1a1714; }
-    .footer-brand p { font-size: 12px; line-height: 1.85; color: #7a7268; max-width: 280px; }
-    .footer-social-btn { width: 30px; height: 30px; border: 1px solid #e0dbd5; display: inline-flex; align-items: center; justify-content: center; color: #7a7268; margin-right:8px; }
-    .footer-col h4, .footer-newsletter h4 { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #1a1714; margin-bottom: 22px; font-weight: 600; }
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 12px; }
-    .footer-col ul li a { font-size: 12.5px; color: #7a7268; text-decoration:none; }
-    .footer-newsletter p { font-size: 12px; color: #7a7268; line-height: 1.7; margin-bottom: 20px; }
-    .newsletter-form { display: flex; border: 1px solid #e0dbd5; }
-    .newsletter-form input { flex: 1; padding: 11px 14px; border: none; background: none; font-size: 12px; outline: none; }
-    .newsletter-form button { padding: 11px 18px; background: #1a1714; color: #fff; border: none; cursor: pointer; font-size: 10px; letter-spacing: .1em; }
-    .footer-bottom { border-top: 1px solid #ece9e5; padding: 24px 0; display: flex; justify-content: space-between; align-items: center; font-size: 10.5px; color: #9a928e; }
-    .footer-bottom a { color: #9a928e; text-decoration:none; }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 54px;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid #ece9e5;
+      z-index: 99;
+      flex-direction: column;
+      padding: 0;
+      transform: translateY(-10px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+    }
+
+    .mobile-menu.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 18px 28px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #5a5250;
+      border-bottom: 1px solid #f0ece8;
+      transition: all 0.2s ease;
+    }
+
+    .mobile-menu a:hover {
+      color: #7a5545;
+      background: #fdf9f7;
+      padding-left: 36px;
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .site-footer {
+      background: #f8f6f2;
+      color: #5a5250;
+      padding: 40px 60px 0;
+      border-top: 1px solid #ece9e5;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid #e4e0db;
+    }
+
+    .footer-brand h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      color: #1a1714;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .footer-brand p {
+      font-size: 11.5px;
+      line-height: 1.9;
+      color: #8a817c;
+      max-width: 260px;
+      font-weight: 300;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .footer-social-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid #ddd8d3;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9a928e;
+      text-decoration: none;
+      background: #ffffff;
+      transition: all 0.28s ease;
+    }
+
+    .footer-social-btn:hover {
+      border-color: #7a5545;
+      color: #7a5545;
+      background: #fdf9f7;
+      transform: translateY(-2px);
+    }
+
+    .footer-col h4 {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #1a1714;
+      margin-bottom: 14px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-col ul li a {
+      font-size: 12px;
+      color: #8a817c;
+      text-decoration: none;
+      font-weight: 300;
+      transition: color 0.22s;
+    }
+
+    .footer-col ul li a:hover {
+      color: #1a1714;
+    }
+
+
+
+    .footer-bottom {
+      padding: 14px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      color: #b0a8a4;
+      flex-wrap: wrap;
+      gap: 8px;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-bottom a {
+      color: #b0a8a4;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-bottom a:hover {
+      color: #1a1714;
+    }
+
+    .footer-brand-accent {
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .footer-brand-accent::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 5px;
+      background: #7a5545;
+      border-radius: 50%;
+    }
 
     /* ═══════════════════════════════════════════
        CATALOG LAYOUT
     ═══════════════════════════════════════════ */
-    .catalog-wrapper { display: flex; max-width: 1400px; margin: 80px auto 0; padding: 0 44px; min-height: calc(100vh - 80px); }
-    .catalog-sidebar { width: 240px; flex-shrink: 0; padding-right: 40px; border-right: 1px solid #f0ece8; }
-    .filter-header { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 24px; color: #1a1714; }
-    .filter-group { margin-bottom: 24px; border-bottom: 1px solid #f0ece8; padding-bottom: 16px; }
-    .filter-title { font-size: 10.5px; font-weight: 600; color: #5a5250; letter-spacing: 0.05em; margin-bottom: 12px; display: flex; justify-content: space-between; text-transform: uppercase; }
-    .filter-options { display: flex; flex-direction: column; gap: 10px; }
-    .mobile-filter-btn { display: none; padding: 8px 12px; background: #fafaf9; border: 1px solid #e0dbd8; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; cursor: pointer; align-items: center; gap: 6px; color: #1a1714; }
-    .mobile-filter-btn svg { width: 14px; height: 14px; }
+    .catalog-wrapper {
+      display: flex;
+      max-width: 1400px;
+      margin: 80px auto 0;
+      padding: 0 44px;
+      min-height: calc(100vh - 80px);
+    }
 
-    .catalog-main { flex: 1; padding-left: 40px; padding-bottom: 80px; }
-    .catalog-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
-    .catalog-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; color: #1a1a1a; }
-    .catalog-title span { font-family: 'Montserrat', sans-serif; font-size: 12px; color: #9a928e; font-weight: 400; margin-left: 10px; }
-    .sort-dropdown { font-size: 11px; padding: 8px 12px; border: 1px solid #e0dbd8; font-family: inherit; color: #5a5250; background: #fafaf9; }
+    .catalog-sidebar {
+      width: 240px;
+      flex-shrink: 0;
+      padding-right: 40px;
+      border-right: 1px solid #f0ece8;
+    }
+
+    .filter-header {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 24px;
+      color: #1a1714;
+    }
+
+    .filter-group {
+      margin-bottom: 24px;
+      border-bottom: 1px solid #f0ece8;
+      padding-bottom: 16px;
+    }
+
+    .filter-title {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #5a5250;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      text-transform: uppercase;
+    }
+
+    .filter-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mobile-filter-btn {
+      display: none;
+      padding: 8px 12px;
+      background: #fafaf9;
+      border: 1px solid #e0dbd8;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      align-items: center;
+      gap: 6px;
+      color: #1a1714;
+    }
+
+    .mobile-filter-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .catalog-main {
+      flex: 1;
+      padding-left: 40px;
+      padding-bottom: 80px;
+    }
+
+    .catalog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .catalog-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .catalog-title span {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      color: #9a928e;
+      font-weight: 400;
+      margin-left: 10px;
+    }
+
+    .sort-dropdown {
+      font-size: 11px;
+      padding: 8px 12px;
+      border: 1px solid #e0dbd8;
+      font-family: inherit;
+      color: #5a5250;
+      background: #fafaf9;
+    }
 
     /* Promo Banner - Bulk Orders */
-    .promo-banner { background: #1a1a1a; width: 100%; height: 260px; display: flex; align-items: center; justify-content: flex-start; padding: 0 50px; margin-bottom: 30px; border-radius: 4px; color: #fff; overflow: hidden; position: relative; }
-    .promo-content { position: relative; z-index: 5; display: flex; flex-direction: column; justify-content: center; max-width: 50%; align-items: flex-start; text-align: left; padding: 40px 0; }
-    .promo-content h2 { font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 400; margin-bottom: 12px; }
-    .promo-content h2 span { font-weight: 700; font-family: 'Montserrat', sans-serif; }
-    .promo-content .promo-email { display: inline-block; background: #fff; color: #1a1a1a; padding: 12px 24px; text-decoration: none; font-size: 15px; font-weight: 600; margin-bottom: 40px; border-radius: 2px; }
-    .promo-bottom-text { font-size: 12px; font-weight: 500; font-family: 'Montserrat', sans-serif; color: #e0e0e0; display: flex; align-items: center; gap: 10px; }
-    
-    .promo-tshirts { position: absolute; right: 0; top: 0; width: 350px; height: 100%; z-index: 1; pointer-events: none; }
-    .promo-tshirt-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; }
-    .promo-tshirt-mask { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--color); -webkit-mask-image: url('tshirt-front.png'); mask-image: url('tshirt-front.png'); -webkit-mask-size: contain; mask-size: contain; -webkit-mask-position: center; mask-position: center; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
-    .promo-tshirt-shadow { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
-    
-    .tshirt-back { transform: scale(0.65) translate(-45%, -20%) rotate(-10deg); z-index: 1; }
-    .tshirt-mid { transform: scale(0.7) translate(-15%, -5%) rotate(-5deg); z-index: 2; }
-    .tshirt-front { transform: scale(0.8) translate(15%, 10%); z-index: 3; }
+    .promo-banner {
+      background: #1a1a1a;
+      width: 100%;
+      height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 50px;
+      margin-bottom: 30px;
+      border-radius: 4px;
+      color: #fff;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .promo-content {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 50%;
+      align-items: flex-start;
+      text-align: left;
+      padding: 40px 0;
+    }
+
+    .promo-content h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 26px;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+
+    .promo-content h2 span {
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .promo-content .promo-email {
+      display: inline-block;
+      background: #fff;
+      color: #1a1a1a;
+      padding: 12px 24px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 40px;
+      border-radius: 2px;
+    }
+
+    .promo-bottom-text {
+      font-size: 12px;
+      font-weight: 500;
+      font-family: 'Montserrat', sans-serif;
+      color: #e0e0e0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .promo-tshirts {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 350px;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .promo-tshirt-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .promo-tshirt-mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--color);
+      -webkit-mask-image: url('tshirt-front.png');
+      mask-image: url('tshirt-front.png');
+      -webkit-mask-size: contain;
+      mask-size: contain;
+      -webkit-mask-position: center;
+      mask-position: center;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+    }
+
+    .promo-tshirt-shadow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+    }
+
+    .tshirt-back {
+      transform: scale(0.65) translate(-45%, -20%) rotate(-10deg);
+      z-index: 1;
+    }
+
+    .tshirt-mid {
+      transform: scale(0.7) translate(-15%, -5%) rotate(-5deg);
+      z-index: 2;
+    }
+
+    .tshirt-front {
+      transform: scale(0.8) translate(15%, 10%);
+      z-index: 3;
+    }
 
     /* Product Grid */
-    .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px 20px; }
-    .product-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: all 0.3s ease; }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px 20px;
+    }
+
+    .product-card {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+    }
+
     .product-img-wrap {
       position: relative;
       background: #fdfbf9;
-      aspect-ratio: 4/5; /* Taller rect for waist-up look */
+      aspect-ratio: 4/5;
+      /* Taller rect for waist-up look */
       overflow: hidden;
       margin-bottom: 16px;
       border-radius: 4px;
     }
-    
+
     .product-img-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top center; /* Focuses on head/chest area */
+      object-position: top center;
+      /* Focuses on head/chest area */
       transition: transform 0.4s ease;
     }
 
-    .product-card:hover .product-img-wrap img { transform: scale(1.03); }
+    .product-card:hover .product-img-wrap img {
+      transform: scale(1.03);
+    }
 
     /* CORNER BRACKET MOCK DESIGN OVERLAY */
     .mock-design-box {
       position: absolute;
-      top: 35%; /* Rest on chest area */
+      top: 35%;
+      /* Rest on chest area */
       left: 50%;
       transform: translate(-50%, -50%);
       width: 50%;
@@ -126,6 +606,7 @@
       justify-content: center;
       z-index: 2;
     }
+
     /* Corner Brackets using Before/After pseudo elements */
     .mock-design-box::before,
     .mock-design-box::after {
@@ -136,32 +617,49 @@
       border: 6px solid;
       pointer-events: none;
     }
+
     /* Set specific color depending on tee style */
-    .mock-design-box.bracket-dark::before, .mock-design-box.bracket-dark::after { border-color: #2196f3; }
-    .mock-design-box.bracket-light::before, .mock-design-box.bracket-light::after { border-color: #ff5722; }
+    .mock-design-box.bracket-dark::before,
+    .mock-design-box.bracket-dark::after {
+      border-color: #2196f3;
+    }
+
+    .mock-design-box.bracket-light::before,
+    .mock-design-box.bracket-light::after {
+      border-color: #ff5722;
+    }
 
     .mock-design-box::before {
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       clip-path: polygon(0 0, 25% 0, 25% 10%, 10% 10%, 10% 25%, 0 25%);
     }
+
     .mock-design-box::after {
-      bottom: 0; right: 0;
+      bottom: 0;
+      right: 0;
       clip-path: polygon(100% 100%, 75% 100%, 75% 90%, 90% 90%, 90% 75%, 100% 75%);
     }
+
     .mock-design-box span::before {
       content: '';
       position: absolute;
-      top: 0; right: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
       border: 6px solid;
       border-color: inherit;
       clip-path: polygon(100% 0, 75% 0, 75% 10%, 90% 10%, 90% 25%, 100% 25%);
     }
+
     .mock-design-box span::after {
       content: '';
       position: absolute;
-      bottom: 0; left: 0;
-      width: 100%; height: 100%;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       border: 6px solid;
       border-color: inherit;
       clip-path: polygon(0 100%, 25% 100%, 25% 90%, 10% 90%, 10% 75%, 0 75%);
@@ -177,80 +675,248 @@
       z-index: 5;
     }
 
-    .product-badge { position: absolute; top: 10px; left: 10px; background: #fff; padding: 4px 8px; font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; border: 1px solid #e0dbd8; z-index: 3; }
-    .product-brand { font-size: 10px; color: #9a928e; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
-    .product-title { font-size: 12.5px; font-weight: 500; color: #1a1714; margin-bottom: 8px; line-height: 1.4; }
-    .product-price-row { display: flex; align-items: baseline; gap: 10px; }
-    .price-final { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: #1a1714; }
-    .price-strike { font-size: 11px; text-decoration: line-through; color: #bcaaa4; }
-    .price-off { font-size: 10px; font-weight: 600; color: #4caf50; }
+    .product-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #fff;
+      padding: 4px 8px;
+      font-size: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: 1px solid #e0dbd8;
+      z-index: 3;
+    }
 
-    .product-card.hidden { display: none; }
+    .product-brand {
+      font-size: 10px;
+      color: #9a928e;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+
+    .product-title {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #1a1714;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .product-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .price-final {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1714;
+    }
+
+    .price-strike {
+      font-size: 11px;
+      text-decoration: line-through;
+      color: #bcaaa4;
+    }
+
+    .price-off {
+      font-size: 10px;
+      font-weight: 600;
+      color: #4caf50;
+    }
+
+    .product-card.hidden {
+      display: none;
+    }
 
     /* Media queries */
     @media (max-width: 1024px) {
-      .catalog-wrapper { padding: 0 20px; flex-direction: column; }
-      .mobile-filter-btn { display: flex; }
-      .catalog-sidebar { display: none; width: 100%; background: #ffffff; padding: 20px; margin-bottom: 30px; border: 1px solid #e0dbd8; border-right: 1px solid #e0dbd8; }
-      .catalog-sidebar.active { display: block; }
-      .filter-group { display: inline-block; width: 48%; vertical-align: top; border-bottom: none; }
-      .catalog-main { padding-left: 0; }
-      .promo-banner { padding: 30px 20px; height: auto; flex-direction: column; align-items: flex-start; }
-      .promo-content { max-width: 100%; padding: 0; margin-bottom: 30px; }
-      .promo-tshirts { position: relative; width: 100%; height: 200px; transform: none; right: 0; }
-      .promo-tshirts img { border-radius: 4px; }
-      .product-grid { grid-template-columns: repeat(2, 1fr); }
-      .nav-left { display: none; }
-      .hamburger { display: flex !important; opacity: 1; pointer-events: auto; }
-      .mobile-menu { display: flex; }
+      .catalog-wrapper {
+        padding: 0 20px;
+        flex-direction: column;
+      }
+
+      .mobile-filter-btn {
+        display: flex;
+      }
+
+      .catalog-sidebar {
+        display: none;
+        width: 100%;
+        background: #ffffff;
+        padding: 20px;
+        margin-bottom: 30px;
+        border: 1px solid #e0dbd8;
+        border-right: 1px solid #e0dbd8;
+      }
+
+      .catalog-sidebar.active {
+        display: block;
+      }
+
+      .filter-group {
+        display: inline-block;
+        width: 48%;
+        vertical-align: top;
+        border-bottom: none;
+      }
+
+      .catalog-main {
+        padding-left: 0;
+      }
+
+      .promo-banner {
+        padding: 30px 20px;
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .promo-content {
+        max-width: 100%;
+        padding: 0;
+        margin-bottom: 30px;
+      }
+
+      .promo-tshirts {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        transform: none;
+        right: 0;
+      }
+
+      .promo-tshirts img {
+        border-radius: 4px;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav-left {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex !important;
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .mobile-menu {
+        display: flex;
+      }
     }
+
     @media (max-width: 600px) {
-      .nav-brand { position: static; transform: none; width: auto; text-align: left; left: auto; font-size: 13px; letter-spacing: 0.1em; white-space: nowrap; }
-      .catalog-header { flex-direction: column; align-items: flex-start; gap: 15px; }
-      .catalog-header > div { width: 100%; display: flex; justify-content: space-between; }
-      .mobile-filter-btn { width: 48%; justify-content: center; margin-bottom: 0; padding: 12px; }
-      .sort-dropdown { width: 48%; padding: 12px; }
-      .product-grid { grid-template-columns: 1fr; }
-      .filter-group { width: 100%; display: block; border-bottom: 1px solid #eee; margin-bottom: 16px; padding-bottom: 16px; }
-      .footer-top { grid-template-columns: 1fr; }
+      .nav-brand {
+        font-size: 13px;
+        letter-spacing: 0.1em;
+        white-space: nowrap;
+      }
+
+      .catalog-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .catalog-header>div {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .mobile-filter-btn {
+        width: 48%;
+        justify-content: center;
+        margin-bottom: 0;
+        padding: 12px;
+      }
+
+      .sort-dropdown {
+        width: 48%;
+        padding: 12px;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-group {
+        width: 100%;
+        display: block;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding-bottom: 20px;
+      }
+
+      .site-footer {
+        padding: 28px 20px 0;
+        margin-top: 40px;
+      }
+
+      .footer-bottom {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 12px 0;
+        font-size: 9.5px;
+      }
     }
-  @media (min-width: 769px) { .hamburger, .mobile-nav, .mobile-menu { display: none !important; } } </style>
+
+    @media (min-width: 769px) {
+
+      .hamburger,
+      .mobile-nav,
+      .mobile-menu {
+        display: none !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
   <!-- GLOBAL NAV -->
   <nav id="main-nav">
-      <ul class="nav-left">
-          <li><a href="index.html" id="nav-home">Home</a></li>
-          <li><a href="about.html" id="nav-about">About</a></li>
-          <li><a href="products.html" id="nav-products" class="active">Products</a></li>
-          <li><a href="contact.html" id="nav-contact">Contact</a></li>
-      </ul>
-      <div class="nav-brand">DHRUVI ENTERPRISE</div>
-      <div class="nav-right">
-          <button id="btn-search" aria-label="Search">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7.5" /><line x1="16.5" y1="16.5" x2="22" y2="22" /></svg>
-          </button>
-          <button id="btn-cart" aria-label="Cart">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" /><line x1="3" y1="6" x2="21" y2="6" /><path d="M16 10a4 4 0 01-8 0" /></svg>
-          </button>
-          <button class="hamburger" id="btn-hamburger" aria-label="Menu" aria-expanded="false">
-              <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-          </button>
-      </div>
+    <a href="index.html" class="nav-brand">DHRUVI ENTERPRISE</a>
+    <ul class="nav-left">
+      <li><a href="index.html" id="nav-home">Home</a></li>
+      <li><a href="about.html" id="nav-about">About</a></li>
+      <li><a href="products.html" id="nav-products" class="active">Products</a></li>
+      <li><a href="contact.html" id="nav-contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="hamburger" id="btn-hamburger" aria-label="Menu" aria-expanded="false">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
   </nav>
   <div class="mobile-menu" id="mobile-menu">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="products.html">Products</a>
-      <a href="contact.html">Contact</a>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="products.html" class="active">Products</a>
+    <a href="contact.html">Contact</a>
   </div>
 
   <div class="catalog-wrapper">
     <!-- Sidebar -->
     <aside class="catalog-sidebar" id="catalog-sidebar">
       <div class="filter-header">Filters</div>
-      
+
       <!-- Gender -->
       <div class="filter-group">
         <div class="filter-title">Gender <span style="font-weight:400; font-size:16px;">-</span></div>
@@ -275,12 +941,18 @@
       <div class="filter-group">
         <div class="filter-title">Color <span style="font-weight:400; font-size:16px;">-</span></div>
         <div class="filter-options">
-          <label class="filter-checkbox"><input type="checkbox" value="black" class="filter-chk"> <span class="color-swatch" style="background:#111;"></span> Black</label>
-          <label class="filter-checkbox"><input type="checkbox" value="white" class="filter-chk"> <span class="color-swatch" style="background:#fff;"></span> White</label>
-          <label class="filter-checkbox"><input type="checkbox" value="grey" class="filter-chk"> <span class="color-swatch" style="background:#999;"></span> Grey</label>
-          <label class="filter-checkbox"><input type="checkbox" value="navy" class="filter-chk"> <span class="color-swatch" style="background:#0F2A4A;"></span> Navy</label>
-          <label class="filter-checkbox"><input type="checkbox" value="pink" class="filter-chk"> <span class="color-swatch" style="background:#FFC0CB;"></span> Pink</label>
-          <label class="filter-checkbox"><input type="checkbox" value="mint" class="filter-chk"> <span class="color-swatch" style="background:#98FF98;"></span> Mint</label>
+          <label class="filter-checkbox"><input type="checkbox" value="black" class="filter-chk"> <span
+              class="color-swatch" style="background:#111;"></span> Black</label>
+          <label class="filter-checkbox"><input type="checkbox" value="white" class="filter-chk"> <span
+              class="color-swatch" style="background:#fff;"></span> White</label>
+          <label class="filter-checkbox"><input type="checkbox" value="grey" class="filter-chk"> <span
+              class="color-swatch" style="background:#999;"></span> Grey</label>
+          <label class="filter-checkbox"><input type="checkbox" value="navy" class="filter-chk"> <span
+              class="color-swatch" style="background:#0F2A4A;"></span> Navy</label>
+          <label class="filter-checkbox"><input type="checkbox" value="pink" class="filter-chk"> <span
+              class="color-swatch" style="background:#FFC0CB;"></span> Pink</label>
+          <label class="filter-checkbox"><input type="checkbox" value="mint" class="filter-chk"> <span
+              class="color-swatch" style="background:#98FF98;"></span> Mint</label>
         </div>
       </div>
 
@@ -300,7 +972,9 @@
         <h1 class="catalog-title">Customized T-Shirts <span>120 Products</span></h1>
         <div style="display:flex; gap:10px; align-items:center;">
           <button id="btn-mobile-filter" class="mobile-filter-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg> 
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z" />
+            </svg>
             Filter
           </button>
           <select class="sort-dropdown">
@@ -322,18 +996,23 @@
           </div>
         </div>
         <div class="promo-tshirts">
-          <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800" alt="Bulk T-Shirts" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9;" />
+          <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800" alt="Bulk T-Shirts"
+            style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9;" />
         </div>
       </div>
 
       <div class="product-grid" id="productGrid">
-        
+
         <!-- Product 1: Men Oversized Black -->
-        <a href="customize.html?gender=men&fit=oversized&color=black" class="product-card" data-gender="men" data-color="black" data-fit="oversized" data-size="s,m,l,xl,xxl">
+        <a href="customize.html?gender=men&fit=oversized&color=black" class="product-card" data-gender="men"
+          data-color="black" data-fit="oversized" data-size="s,m,l,xl,xxl">
           <div class="product-img-wrap">
             <div class="product-badge">Oversized Fit</div>
             <img src="men_plain_black.png" alt="Men's Plain Black Oversized Tee">
-            <div class="mock-design-box bracket-light" style="border-color:#ff5722;"><span style="border-color:#ff5722;"></span><h4 style="color:#fff;">YOUR<br>DESIGN<br>HERE</h4></div>
+            <div class="mock-design-box bracket-light" style="border-color:#ff5722;"><span
+                style="border-color:#ff5722;"></span>
+              <h4 style="color:#fff;">YOUR<br>DESIGN<br>HERE</h4>
+            </div>
           </div>
           <div class="product-info">
             <div class="product-brand">Dhruvi Enterprise</div>
@@ -347,11 +1026,15 @@
         </a>
 
         <!-- Product 2: Men Regular White -->
-        <a href="customize.html?gender=men&fit=regular&color=white" class="product-card" data-gender="men" data-color="white" data-fit="regular" data-size="s,m,l,xl">
+        <a href="customize.html?gender=men&fit=regular&color=white" class="product-card" data-gender="men"
+          data-color="white" data-fit="regular" data-size="s,m,l,xl">
           <div class="product-img-wrap">
             <div class="product-badge">Regular Fit</div>
             <img src="men_plain_white.png" alt="Men's Plain White Regular Tee">
-            <div class="mock-design-box bracket-dark" style="border-color:#2196f3;"><span style="border-color:#2196f3;"></span><h4 style="color:#1a1714;">YOUR<br>DESIGN<br>HERE</h4></div>
+            <div class="mock-design-box bracket-dark" style="border-color:#2196f3;"><span
+                style="border-color:#2196f3;"></span>
+              <h4 style="color:#1a1714;">YOUR<br>DESIGN<br>HERE</h4>
+            </div>
           </div>
           <div class="product-info">
             <div class="product-brand">Dhruvi Enterprise</div>
@@ -365,11 +1048,15 @@
         </a>
 
         <!-- Product 3: Women Oversized White -->
-        <a href="customize.html?gender=women&fit=oversized&color=white" class="product-card" data-gender="women" data-color="white" data-fit="oversized" data-size="s,m,l">
+        <a href="customize.html?gender=women&fit=oversized&color=white" class="product-card" data-gender="women"
+          data-color="white" data-fit="oversized" data-size="s,m,l">
           <div class="product-img-wrap">
             <div class="product-badge">Oversized Fit</div>
             <img src="women_plain_white.png" alt="Women's Plain White Oversized Tee">
-            <div class="mock-design-box bracket-dark" style="border-color:#2196f3;"><span style="border-color:#2196f3;"></span><h4 style="color:#1a1714;">YOUR<br>DESIGN<br>HERE</h4></div>
+            <div class="mock-design-box bracket-dark" style="border-color:#2196f3;"><span
+                style="border-color:#2196f3;"></span>
+              <h4 style="color:#1a1714;">YOUR<br>DESIGN<br>HERE</h4>
+            </div>
           </div>
           <div class="product-info">
             <div class="product-brand">Dhruvi Enterprise</div>
@@ -383,11 +1070,15 @@
         </a>
 
         <!-- Product 4: Women Regular Black -->
-        <a href="customize.html?gender=women&fit=regular&color=black" class="product-card" data-gender="women" data-color="black" data-fit="regular" data-size="s,m,l,xl,xxl">
+        <a href="customize.html?gender=women&fit=regular&color=black" class="product-card" data-gender="women"
+          data-color="black" data-fit="regular" data-size="s,m,l,xl,xxl">
           <div class="product-img-wrap">
             <div class="product-badge">Regular Fit</div>
             <img src="women_plain_black.png" alt="Women's Plain Black Regular Tee">
-            <div class="mock-design-box bracket-light" style="border-color:#ff5722;"><span style="border-color:#ff5722;"></span><h4 style="color:#fff;">YOUR<br>DESIGN<br>HERE</h4></div>
+            <div class="mock-design-box bracket-light" style="border-color:#ff5722;"><span
+                style="border-color:#ff5722;"></span>
+              <h4 style="color:#fff;">YOUR<br>DESIGN<br>HERE</h4>
+            </div>
           </div>
           <div class="product-info">
             <div class="product-brand">Dhruvi Enterprise</div>
@@ -403,47 +1094,68 @@
     </main>
   </div>
 
-  <!-- GLOBAL FOOTER -->
+  <!-- FOOTER -->
   <footer class="site-footer" id="contact">
-      <div class="footer-top">
-          <div class="footer-brand">
-              <h3>Dhruvi<br>Enterprise</h3>
-              <p>Premium fashion for the modern individual. Crafted with intention, worn with confidence.</p>
-              <div class="footer-socials" style="margin-top:20px;">
-                  <a href="#" class="footer-social-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="4" /></svg></a>
-              </div>
-          </div>
-          <div class="footer-col">
-              <h4>Shop</h4>
-              <ul><li><a href="products.html">Men</a></li><li><a href="products.html">Women</a></li><li><a href="products.html">Oversized</a></li></ul>
-          </div>
-          <div class="footer-col">
-              <h4>Company</h4>
-              <ul><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul>
-          </div>
-          <div class="footer-newsletter">
-              <h4>Stay in the loop</h4>
-              <p>Early access to new drops and exclusive offers.</p>
-              <form class="newsletter-form" onsubmit="return false;">
-                  <input type="email" placeholder="Your email address" />
-                  <button type="submit">Join</button>
-              </form>
-          </div>
+    <div class="footer-top">
+
+      <!-- Brand Column -->
+      <div class="footer-brand">
+        <h3>Dhruvi<br>Enterprise</h3>
+        <p>Premium fashion for the modern individual. Crafted with intention, worn with confidence. Redefining the everyday t-shirt since 2020.</p>
+        <div class="footer-socials">
+          <a href="https://instagram.com/dhruvi_enterprise" class="footer-social-btn" aria-label="Instagram" target="_blank">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+            </svg>
+          </a>
+          <a href="https://wa.me/918511211415" class="footer-social-btn" aria-label="WhatsApp" target="_blank">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+          </a>
+          <a href="contact.html" class="footer-social-btn" aria-label="Email">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <polyline points="2,4 12,13 22,4" />
+            </svg>
+          </a>
+        </div>
       </div>
-      <div class="footer-bottom">
-          <span>©️ 2024 Dhruvi Enterprise. All rights reserved.</span>
-          <div style="display:flex;gap:20px;">
-              <a href="#">Privacy</a><a href="#">Terms</a>
-          </div>
+
+      <!-- Company Links -->
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
       </div>
+
+    </div>
+
+    <!-- Footer Bottom Bar -->
+    <div class="footer-bottom">
+      <span>© 2024 Dhruvi Enterprise. All rights reserved.</span>
+      <span class="footer-brand-accent">Powered by <a href="https://technovasolutions.in/" target="_blank" rel="noopener">TechNova Solutions</a></span>
+      <div style="display:flex; gap:20px;">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Shipping</a>
+      </div>
+    </div>
   </footer>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Menu Interactivity
-      const hamburger = document.getElementById("btn-hamburger");
-      const mobileMenu = document.getElementById("mobile-menu");
-      
+      /* ── Hamburger Menu ── */
+      const hamburger = document.getElementById('btn-hamburger');
+      const mobileMenu = document.getElementById('mobile-menu');
+
       const openMenu = () => {
         hamburger.classList.add('open');
         hamburger.setAttribute('aria-expanded', 'true');
@@ -458,7 +1170,7 @@
         setTimeout(() => { mobileMenu.style.display = 'none'; }, 300);
       };
 
-      if(hamburger) {
+      if (hamburger) {
         hamburger.addEventListener('click', (e) => {
           e.stopPropagation();
           hamburger.classList.contains('open') ? closeMenu() : openMenu();
@@ -473,7 +1185,7 @@
       // Filter Interactivity
       const btnMobileFilter = document.getElementById('btn-mobile-filter');
       const catalogSidebar = document.getElementById('catalog-sidebar');
-      if(btnMobileFilter && catalogSidebar) {
+      if (btnMobileFilter && catalogSidebar) {
         btnMobileFilter.addEventListener('click', () => {
           catalogSidebar.classList.toggle('active');
         });
@@ -509,5 +1221,5 @@
   </script>
   <script src="chatbot.js"></script>
 </body>
-</html>
 
+</html>
