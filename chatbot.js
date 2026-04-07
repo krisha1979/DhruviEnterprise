@@ -1,35 +1,10 @@
 /* ═══════════════════════════════════════════════════════════
-   DHRUVI ENTERPRISE — PREMIUM AI VIRTUAL ASSISTANT
-   Handcrafted for a seamless, client-side experience.
-   No external API required. Optimized for Dhruvi Enterprise.
+   DHRUVI ENTERPRISE — VIRTUAL STYLE ASSISTANT
+   Fully client-side. No external API required.
    Drop this <script src="chatbot.js"></script> before </body>.
 ═══════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
-
-
-  /* ─── CONFIG ─── */
-  const GEMINI_API_KEY = 'AIzaSyBUOFdHDWsQH9_6PbOEnGXQQqBFFQ2MpIA'; // <-- Replace with your key
-  const GEMINI_MODEL = 'gemini-2.5-flash-lite';
-  const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
-
-  const SYSTEM_PROMPT = `You are the AI Style Assistant for Dhruvi Enterprise, a premium Indian fashion brand specialising in customised T-shirts, lifestyle wear, and curated fashion accessories for men. You communicate with the warmth, sophistication, and confidence of a luxury brand representative.
-
-Your role:
-• Help customers discover products, collections, and styles that suit them.
-• Answer questions about the brand's story, quality, customisation options, and craftsmanship.
-• Guide users on sizing, styling tips, and outfit pairings.
-• Provide information about the contact page for orders and enquiries.
-• Keep every response elegant, concise, and on-brand.
-
-Brand facts:
-- Founded: 2020
-- Specialty: Premium customised T-shirts & lifestyle fashion for men
-- Aesthetic: Clean, sophisticated, modern Indian fashion
-- Contact: Available via the Contact page on the website
-- Pages: Home, About, Products, Contact
-
-If you don't know something specific, gracefully suggest the user visit the Contact page or reach out directly. Keep responses under 120 words unless a detailed answer is genuinely needed. Never discuss politics, religion, or topics unrelated to fashion and the brand.`;
 
   /* ─── INJECT STYLES ─── */
 
